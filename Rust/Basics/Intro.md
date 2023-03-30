@@ -50,7 +50,7 @@ This generates a simple rust project and `--bin` resembles a rust executable ins
 
 Cargo creates a cargo.tml file which includes metadata for the package. We can write our dependencies in this file and cargo takes care of them.
 
-## Hello world
+### Hello world
 
 ```rust
 fn main {
@@ -61,3 +61,20 @@ fn main {
 We simply run this via `cargo run` command. Cargo puts all executables inside /target directory.
 
 > We can use `cargo clean` to clean the target directory.
+
+## Syntax Notes
+
+* Rust's functions are declared with `fn` keyword.
+* codes wrapped with curly braces are called expressions. for example:
+
+  * ```rust
+    {
+        println!("cos x:");
+        x.cos()
+    }
+    ```
+  
+* We don't need `return` keyword for last statement that returns value of the function. We also don't need a `;`.
+* if statements don't need parantheses but curly braces are mandatory.
+* Rust can infer variables value.
+* Rust attributes like `#[test]` are like java annotations. We can define our test functions and mark them with this attribute and assert using macros then execute `cargo test` to run tests.
