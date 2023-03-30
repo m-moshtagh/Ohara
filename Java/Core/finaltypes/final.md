@@ -26,3 +26,7 @@ constant. Using it with method prevents it to get overridden. Using it with clas
 ![](./pics/sematec-final21.png)
 ![](./pics/sematec-final22.png)
 ![](./pics/sematec-final23.png)
+
+## Final Parameters
+
+In order for us to force that address of object in a parameter of a method can't change, we can declare it final.

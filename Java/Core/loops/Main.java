@@ -8,7 +8,7 @@ public class Main {
             count++;
         } while (count >= 10);
 
-        while (count <= 10){
+        while (count <= 10) {
             System.out.println("while ==> " + count);
             count++;
         }
@@ -17,9 +17,20 @@ public class Main {
             System.out.println("for loop" + count);
         }
 
-        int[] a = {54};
+        int x = 0;
+        for (long y = 0, z = 4; x < 5 && y < 10; x++, y++) {
+            System.out.print(y + " ");
+        }
+        System.out.print(x + " ");
+
+        int[] a = { 54 };
         for (int b : a) {
             System.out.println("for each " + b);
         }
+
+        // In for loop initialization block all variables must be the same type
+        for(long y = 0, x = 4; x < 5 && y < 10; x++, y++)
+            System.out.print(y + " ");
+        System.out.print(x); // DOES NOT COMPILE
     }
 }

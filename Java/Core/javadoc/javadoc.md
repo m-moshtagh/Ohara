@@ -7,7 +7,11 @@
 Javadoc is a tool which comes with JDK, and it is used for generating Java code documentation in HTML format from Java
 source code, which requires documentation in a predefined format.
 
-> We can use some of HTML tags too.
+## Usage
+
+We define java doc notation by putting everything between `/** */`. We usually use this on top of the component we want to document.
+
+> We can also use HTML tags.
 
 ## Java doc tags
 

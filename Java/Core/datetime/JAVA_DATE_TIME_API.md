@@ -37,7 +37,7 @@ is `java.time` and others are derived:
 |      Period       |             amount of time in years, months and days              | length of a prison sentence |
 | DateTimeFormatter | convert a String into java.time object called Temporal vise versa |     parse() & format()      |
 
-![](./pics/date1.png)
+![date](./pics/date1.png)
 
 ## Standard Calendar
 
@@ -552,4 +552,4 @@ We can convert `java.util` date classes to new API and vise versa.
 ### Conversion
 
 [Non-ISO Date Conversion](https://dev.java/learn/date-time/non-iso-conversion/)
-![](./pics/date2.png)
+![date](./pics/date2.png)
