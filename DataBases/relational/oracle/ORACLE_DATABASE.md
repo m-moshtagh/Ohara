@@ -6,15 +6,11 @@ advance features of oracle database.
 ## Architecture
 
 > Tables data are registered in DBF files. The smallest thing in DBF is data block then it's data segment.
-
 > We can find where dbf files are located inside control files(CTL files).
-
 > We have redo files which conceal data about all failed and succeeded transactions. These files are always open till we
 > turn down the instance. (If the data is committed Then it's metadata is written in DBF). We have three redo files by
 > default, and we can log the data in archive mode.
-
 > SGA
-
 > PGA
 
 ## Sub-queries
