@@ -8,15 +8,15 @@ api. So, We need to consider the useCase, ease of use and user needs.
 We can start with these approaches
 
 * Bolt-on: for existing systems.
-    * takes advantage of existing code.
-    * problems of application and architecture leak through API.
+  * takes advantage of existing code.
+  * problems of application and architecture leak through API.
 * GreenField: For new systems. API first mindset.
-    * take advantage of new tech.
-    * requires massive investment before benefits appear.
+  * take advantage of new tech.
+  * requires massive investment before benefits appear.
 * Facade: Replacing piece by piece, shape and modify the api for better results.
-    * ideal for legacy systems
-    * multiple mindsets in system
-    * hard to replicate behavior for a full one on one conversion.
+  * ideal for legacy systems
+  * multiple mindsets in system
+  * hard to replicate behavior for a full one on one conversion.
 
 ## API modeling
 

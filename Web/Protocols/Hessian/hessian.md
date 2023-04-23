@@ -14,7 +14,7 @@ Hessian server is nothing more than a servlet that can dispatch Burlap or Hessia
 
 ## Steps
 
-###  Enable server components for the remote invocation
+### Enable server components for the remote invocation
 
 The first step in making inventory-tracking objects available remotely via Hessian is to make sure that objects of interest implement some plain Java interfaces. If the object you plan to expose remotely does not implement any interfaces, you need to extract the appropriate business interface from it, and implement that interface. This step is actually the only requirement that Hessian imposes on your server-side objects.
 
