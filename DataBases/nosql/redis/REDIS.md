@@ -213,3 +213,95 @@ switches are as below:
 * --pipeline Enable pipelining
 * --ratio Ratio between SET and GET commands, default is 1:10
 * --hide-histogram Hides detailed output information.
+
+## Data Structures
+
+[Redis commands DOC](https://redis.io/commands/)
+
+### Keys SET & GET
+
+Keys are the primary way to access data values within redis. Keys are `Unique`, `Binary safe`, `up to 512mb` however tradeoff for length and readability should be considered.
+
+Redis goal is to avoid complexity so for key spaces we have logical databases and there's a flat key space which all keys are stored there. and there is no automatic namespacing, so we need to use proper naming conventions.
+
+A logical database is identified by a zero based index. The default is 0. Within a logical database, the key names are unique but same key name can appear in multiple logical databases. So when we need seperate key spaces we can use different logical databases.
+
+> For microservices the key definitions are important to avoid key name clashes across applications.
+
+WE use `SET key value [EX seconds] [PX milliseconds] [NX|XX]` to set a key name and `GET key` to retrieve it.
+
+```bash
+SET customer:100:age 54 # This is a naming convention
+```
+
+We can retrieve all keys with two commands: `KEYS` & `SCAN`
+
+* KEYS blocks until completion and is not suitable for production usage.
+* SCAN iterates using SCAN and returns a slot reference. may return 0 or more keys per call and is safe for production.
+
+We can use `KEYS pattern` & `SCAN slot [MATCH pattern] [COUNT count]`
+
+```bash
+KEYS customer:1*
+
+SCCAN 0 MATCH customer:1* COUNT 1000
+# Scan may return a integer value which is a slot and we need to call another time with that slot number. It takes more service calls but is more efficinet.
+```
+
+The `DEL` command removes a key and associated memory and is a blocking operation. `UNLINK` is a non-blocking command which removes the name and the memory will be reclaimed by a async process.
+
+We can check if key exists with `EXISTS` command.
+
+> If we seperate `SET` & `EXISTS` commands we may face inconsistency. Hence, WE can set XX(If exists) and NX(not exists) options in SET command.
+
+```bash
+SET CUSTOMER:1000 foo XX # SETS key value if the key already exits
+SET CUSTOMER:1000 bar NX # SETS key value if the key doesn't exits.
+```
+
+#### Expiration
+
+Redis keeps the key until space is required or is forced out by eviction policy. However we have an extra attribute to apply expiration time or TTL to keys. The time can be milliseconds, seconds and unix timestamp.
+
+> Expiration can be set, removed and changed by user(no seperate code thread to clean data)
+
+```bash
+EXPIRE key seconds
+EXPIREAT key timestamp
+PEXPIRE key milliseconds
+PEXPIREAT key milliseconds-timestamp
+TTL key # get expire time seconds.
+PTTL key # get expire time of milliseonds
+PERSIST key # remove ttl
+```
+
+> Threre are options like XX(if expiry is set) NG(if expiry is not set) GT(if expiry is greater than current value) LT(if expiry is less than current value)
+
+### Strings
+
+Strings are binary safe sequences of bytes. We cam store almost anything in them.
+The most common use is for caching API responses, session storage, HTML pages. Can also be used as counters since we have `INCR` & `DECR` and `INCRBY` & `DECRBY` commands in redis. We also have `INCRBYFLOAT`
+String can have maximum of 512mb value.
+Internaly Redis stores encoding of the value, stores a knowledge whether its a text, number or binary.
+
+> We use SET & GET command to store strings.
+
+```bash
+INCR key increments value by 1
+INCRBY key value # can also be a negative number
+```
+
+### Type & Object
+
+We can check the type of key with `TYPE key` command. We can also check encoding of the value with `OBJECT encoding key`
+
+```bash
+SET CUSTOMER:1000:age 22 # create a string for customer number 1000 age
+TYPE CUSTOMER:1000:age # This returns string which shows we have string type
+OBJECT encoding CUSTOMER:1000:age # This returns int
+```
+
+> WHen we use `INCR` command and such Redis automatically checks upward commands to check the encoding of the key.
+> Redis also applies polymorphysm for key values. You can set different encided value for a key unlike RDBMS which has fixed type columns. for ex) We can set CUSTOMER:1000:age value of `twenty three`.
+
+### Hashes
