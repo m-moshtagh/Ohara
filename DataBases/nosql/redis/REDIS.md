@@ -305,3 +305,54 @@ OBJECT encoding CUSTOMER:1000:age # This returns int
 > Redis also applies polymorphysm for key values. You can set different encided value for a key unlike RDBMS which has fixed type columns. for ex) We can set CUSTOMER:1000:age value of `twenty three`.
 
 ### Hashes
+
+Hashes are collecitons of field value pairs like Java Hashmaps, python dictionaries. Redis hashesh are also, mutable.
+Hashesh field values are String which means they are flat(There are no nested objects or arrays)
+
+We can create and update hashesh using `HSET` and get values using `HGET`. We can also remove keys with `HDEL` command. We can also increment a field value by `HINCRBY` command.
+
+> Most hash commands are in O(1) except (HGETALL). It is also not recommended to use JSON values because we have Redis JSON which is more optimal in case of storage and performance.
+
+```bash
+# HSET key field value [field value ...]
+HSET customer:1000 name "Foo" age 20
+# HGET key field
+HGET customer:1000 name
+# HGETALL key
+HGETALL customer:1000
+# HDEL key field [field ...]
+HDEL customer:1000 age
+# HEXISTS key field
+HEXISTS customer:1000 age
+# HINCRBY key field increment
+HINCRBY customer:1000 age 1 # Creates field if not exists
+# HINCRBYFLOAT key field increment
+HINCRBYFLOAT mykey field 2.0e2
+# HKEYS key
+HKEYS customer:1000
+# HLEN key
+HLEN customer:1000
+# HMGET key field [field ...]
+HMGET customer:1000 name age nickname
+# HMSET key field value [field value ...] # Deprecated!
+HMSET myhash field1 "Hello" field2 "World"
+# HRANDFIELD key [count [WITHVALUES]]
+HRANDFIELD dice 2 # returns keys of a hash in this case array of 2 keys of the hash.
+# HSCAN key cursor [MATCH pattern] [COUNT count]
+HSCAN dice 0 MATCH f*
+# HSETNX key field value
+HSETNX customer:1000 age 32 # This has no effect since age exists.
+# HSTRLEN key field
+HSTRLEN customer:1000 name
+# HVALS key
+HVALS customer:1000
+```
+
+Usercases of using hashes:
+
+* RateLimitting. Storing endpoints and limits we can easily manipulate values.
+* Session Cache
+
+### LISTS
+
+
