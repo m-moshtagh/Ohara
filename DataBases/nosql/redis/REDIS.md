@@ -398,3 +398,95 @@ Usecases of Lists:
 
 * Activity Stream: When we need to know the most recent acitvity like recent post
 * Queue that supports a producer-consumer pattern
+
+### SETS
+
+SETs are unordered collections of strings that contains no duplicates. This makes sets perfect for tasks with deduplication and also afficient membership checks like Did this ip address connect in last hour, is this user online, is this URL blackListed and such in O(1). It also supports intersection, difference and union.
+
+Usecases of Sets:
+
+* Tag Cloud
+* Unique visitors
+* Game online players with multiple sets with timescoped keys and expiration time
+
+```bash
+# SADD key member [member ...]
+SADD myset "Hello"
+# SCARD key
+SCARD myset
+# SMEMBERS key
+SMEMBERS myset
+# SMISMEMBER key member [member ...]
+SMISMEMBER myset "one" "notamember"
+# SDIFF key [key ...]
+SDIFF key1 key2
+# SDIFFSTORE destination key [key ...]
+SDIFFSTORE key key1 key2
+# SINTER key [key ...]
+SINTER key1 key2
+# SINTERCARD numkeys key [key ...] [LIMIT limit]
+SINTERCARD 2 key1 key2 LIMIT 1
+# SINTERSTORE destination key [key ...]
+SINTERSTORE key key1 key2
+# SMOVE source destination member
+SMOVE myset myotherset "two"
+# SPOP key [count]
+SPOP myset
+# SREM key member [member ...]
+SREM myset "four"
+# SSCAN key cursor [MATCH pattern] [COUNT count]
+SSCAN mySet 0 MATCH *
+# SUNION key [key ...]
+SUNION key1 key2
+# SUNIONSTORE destination key [key ...]
+SUNIONSTORE key key1 key2
+```
+
+### Sorted SETS
+
+A Redis Sorted Set is an ordered collection of unique members. These Set members are ordered by their associated score. Whenever we add to a sorted set, We are specifying a member and a score. These are good for priority queueus low latency scoreboards and secendary indexing in general.
+Like sets we can perform mathematical operations on sorted sets however, we need to store the result in another sortedset.(Difference is added after redis 6.02+)
+
+Usecases of SortedSets:
+
+* Leaderboards
+* Priority Queue
+
+> Score is a floating number
+
+```bash
+# ZADD key [NX | XX] [GT | LT] [CH] [INCR] score member [score member...]
+ZADD myzset 2 "two" 3 "three"
+# ZCARD key
+ZCARD myzset
+# ZCOUNT key min max
+ZCOUNT myzset -inf +inf
+# ZDIFF numkeys key [key ...] [WITHSCORES]
+ZDIFF 2 zset1 zset2 WITHSCORES
+# ZDIFFSTORE destination numkeys key [key ...]
+ZDIFFSTORE out 2 zset1 zset2
+# ZINCRBY key increment member
+ZINCRBY myzset 2 "one"
+# ZINTER numkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE <SUM | MIN | MAX>] [WITHSCORES]
+ZINTER 2 zset1 zset2
+# ZLEXCOUNT key min max
+ZLEXCOUNT myzset - +
+# ZRANGE key start stop [BYSCORE | BYLEX] [REV] [LIMIT offset count] [WITHSCORES]
+ZRANGE myzset 0 1 WITHSCORES
+# ZRANGEBYLEX key min max [LIMIT offset count]
+ZRANGEBYLEX myzset - (c
+# ZRANK key member [WITHSCORE]
+ZRANK myzset "three" WITHSCORE
+# ZREM key member [member ...]
+ZREM myzset "two"
+# ZREVRANGE key start stop [WITHSCORES]
+ZREVRANGE myzset 0 -1
+# ZSCAN key cursor [MATCH pattern] [COUNT count]
+ZSCAN myzSet 0 MATCH *
+# ZSCORE key member
+ZSCORE myzset "one"
+# ZUNION numkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE <SUM | MIN | MAX>] [WITHSCORES]
+ZUNION 2 zset1 zset2
+```
+
+> Just search the commands for sorted sets operations :) too complicated.
