@@ -355,4 +355,46 @@ Usercases of using hashes:
 
 ### LISTS
 
+Lists are sequence of Strings equlivant to Java ArrayList and JS arrays. Lists are great for storing strings however, they can be used to implement stacks and queues.
+In queue we use `RPUSH` & `LPOP` or `LPUSH` & `RPOP` and for Stack we use `RPUSH` & `RPOP` or `LPUSH` & `LPOP` We can traverse a list using `LRANGE` command.
+Internaly it implements Doubly Linked lists. We also have commands for inserting or getting elements at a specific index.
 
+```bash
+# LPUSH key element [element ...]
+LPUSH myList a b c
+# LPUSHX key element [element ...]
+LPUSHX mylist "Hello"
+# LPOP key [count]
+LPOP mylist 2
+# LPOS key element [RANK rank] [COUNT num-matches] [MAXLEN len]
+LPOS mylist 3 COUNT 0 RANK 2
+# LMPOP numkeys key [key ...] <LEFT | RIGHT> [COUNT count]
+LMPOP 2 non1 non2 LEFT COUNT 10
+# LRANGE key start stop
+LRANGE mylist -100 100
+# LREM key count element
+LREM mylist -2 "hello"
+# LSET key index element
+LSET mylist -2 "five"
+# LTRIM key start stop
+LTRIM mylist 1 -1
+# LINDEX key index
+LINDEX mylist 0
+# LINSERT key <BEFORE | AFTER> pivot element
+LINSERT mylist BEFORE "World" "There"
+# LLEN key
+LLEN mylist
+# LMOVE source destination <LEFT | RIGHT> <LEFT | RIGHT>
+LMOVE mylist myotherlist RIGHT LEFT
+# RPUSH key element [element ...]
+RPUSH mylist "hello"
+# RPUSHX key element [element ...]
+RPUSHX myotherlist "World"
+# RPOP key [count]
+RPOP mylist 2
+```
+
+Usecases of Lists:
+
+* Activity Stream: When we need to know the most recent acitvity like recent post
+* Queue that supports a producer-consumer pattern
