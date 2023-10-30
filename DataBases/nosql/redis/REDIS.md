@@ -540,3 +540,20 @@ For big O notaion we always need to consider:
 * Data cardinality
 * Data Distribution
 * Time Complexity is not execution time
+
+## Transactions
+
+Redis processes commands in the order the server recieves them. Each data manipulation command is atomic. In order to group some commands so, if the operation is failed both commands fail we wrap them in a transaction.
+All the commands that are encapsulated in transactions are serialized and executed sequentially. This gurantees that all the commands executed in a single isolated operation. Redis also gurantees the atomcity of the transaction even when connection is lost.
+`MULTI` marks the start of the transaction. `EXEC` executes the queued commands.
+`DISCARD` throws away any queued command.
+
+> Nested transactions are not supported in redis.
+
+Redis uses Optimistic Locking or Optimistic cuncurrency control which is a mechanism that allows you to specify an interest in an object and get a notification if that object is changed.(Keyspace notifications)
+putting interest is done by `WATCH` command and When EXEC is called the transaction will fail if any watched keys have been modified. We also have `UNWATCH`
+
+* Called before multi
+* multiple watch commands are cumulative
+* local to client
+* All keys unwatched after exec called
