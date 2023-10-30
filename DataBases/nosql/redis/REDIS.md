@@ -490,3 +490,53 @@ ZUNION 2 zset1 zset2
 ```
 
 > Just search the commands for sorted sets operations :) too complicated.
+
+### Cardinality
+
+The cardinality of collections can be checked by `LLEN` for lists, `SCARD` for Sets and `ZCARD` for SortedSerts.
+
+### Capped Collections
+
+In case we want retain specific subset of members like leaderboard.
+We can achieve this by:
+
+* `LTRIM`: allows to specify range of elements we want to retain. It can be specified from left with + index and right with - index. So a typical pattern is to push into a list and trim it.
+* `ZREMRANGEBYRANK`: With sorted sets this command removes the range specified. So typical usage is to add using ZADD then use ZREMRAGEBYRANK.
+
+> Sorted set capp is useful in case of leaderboards and lists are useful in cases of Activiy Stream.
+
+### Indexing using SETS
+
+We are going to explore indexing redis with three techniques to improve performance:
+
+* Object inspection
+* Faceted search
+* Hashed Faceting method
+
+#### Object inspection
+
+First we assume we only have Strings and the values are json. One way to find the specific String we want we can retrieve all keys by SCAN then see each value.
+
+> Time complexity of above approach is O(n)
+
+#### Faceted Search
+
+We can split categories into SETs and add the keys to these sets. Then when we are looking for specific rule between these propeties we can simply INTERSECT the sets.
+This method is way more optimal than Object inspection because we only do a GET operation and INTERSECT. However downfall is when The distribution of keys between categories increase. The more categories the worse performance.
+It's also best if we have the cardinality of sets and start with set with the least cardinality.
+
+> Time complexity of This method is O(n x m): n is cardinality & m is number of sets
+
+#### Hashed index
+
+When we have multiple criteria in case of databases we create compound index, Simple solution is to have a consistent hash with SHA, MD5 or RIPEMD160 algorithms.
+We create SETS and set the keys from computing hashesh of the combination values(categories) Then we add the values to the specific categories.
+The read is so optimized in this case however in case of change we need to delete from one category and add it to another.
+
+> This is much optimal if we don't have changes in our data. The O(n)
+
+For big O notaion we always need to consider:
+
+* Data cardinality
+* Data Distribution
+* Time Complexity is not execution time
