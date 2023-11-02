@@ -557,3 +557,17 @@ putting interest is done by `WATCH` command and When EXEC is called the transact
 * multiple watch commands are cumulative
 * local to client
 * All keys unwatched after exec called
+
+## Storing objects in redis
+
+We can store objects in hashes in redis since we can set & get each attribute. each attritbute can be incremented or decremented. Each field can be tested for existence.
+
+### Storing complex objects
+
+* Multiple hashes
+* Multiple hashes + sets to find the relationship
+* Flattening relationship in a single hash
+
+The way to maintain it is to create hashes and store the object and related object in two separate hashes then maintain the relationship by adding them in a set.
+
+> This has pros and cons. It has extensible independently stored structures and expiration can be added. However, we have lots of keys and SET needs to be maintained with each relationship. Also, REDIS CLUSTER is out of this chart.
