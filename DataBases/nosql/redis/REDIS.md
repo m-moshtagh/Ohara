@@ -628,3 +628,12 @@ usecases:
 * advertisement for customers in location.
 
 > Redis does these operations in realtime access and high change rates.
+
+## Lua Scripting
+
+Lua is an embeddable lightweight scripting language. We can use this for store procedures inside redis. We use `EVAL` to run lua script. The scripts are atomic and are blocking. The execution time should be tested and maintained correctly cause it can decrease performance.
+> Floating numbers are always truncated.
+
+Usecases:
+
+* Limited counters in rate limitting
