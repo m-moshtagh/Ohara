@@ -571,3 +571,20 @@ We can store objects in hashes in redis since we can set & get each attribute. e
 The way to maintain it is to create hashes and store the object and related object in two separate hashes then maintain the relationship by adding them in a set.
 
 > This has pros and cons. It has extensible independently stored structures and expiration can be added. However, we have lots of keys and SET needs to be maintained with each relationship. Also, REDIS CLUSTER is out of this chart.
+
+## Bitmaps
+
+Redis supports BitFields and BitArrays which are compact, optimized structures and can be used for histogram of counters, File permissions.
+
+### BitFields
+
+Allows for manipulation of one or more variable length integers within String datatype.
+
+For exact info read [Official doc of Bitfield command](https://redis.io/commands/bitfield/)
+
+BitFields can store upto unsinged u64 and signed u63 bits. To set and get values we need offset or position using #1(multiply of provided type to calculate bit of offset).
+
+### BItArrays
+
+BitArrays allow manipulation of individual bits within a String datatype. The offset is zero based and the size can be upto String size however, it's not recommended to have large bitarrays.
+`GETBIT`, `SETBIT`, `BITCOUNT` and `BITOP` is used to perfomr operations such as and, or, not and XOR. `BITPOS` finds the index of the first set or unset bit from a given index in the string.
