@@ -588,3 +588,21 @@ BitFields can store upto unsinged u64 and signed u63 bits. To set and get values
 
 BitArrays allow manipulation of individual bits within a String datatype. The offset is zero based and the size can be upto String size however, it's not recommended to have large bitarrays.
 `GETBIT`, `SETBIT`, `BITCOUNT` and `BITOP` is used to perfomr operations such as and, or, not and XOR. `BITPOS` finds the index of the first set or unset bit from a given index in the string.
+
+## Pub/Sub
+
+This feature allows redis to create a simple message bus and act as a broker for multiple clietns providing  a way to post and consume messages and events.
+We have `PUBLISH`, `SUBSCRIBE`, `UNSUBSCRIBE`, `PSUBSCRIBE`, `PUNSUBSCRIBE` and `PUBSUB` command.
+
+The usecases are :
+
+* FanOUt
+  * Subscribe new orders
+  * publish new orders
+* Interprocess communications
+
+The pattern syndications is best to use.
+
+> Redis pubsub gurantees order however, doesn't gurantees delivery since if no body subscribe to a channel the messages will be missed and if a client subscribe to achannel the early messages are missed.
+
+This also has performance downsides which payloadsize, number of subs and number of patterns needs considerations.
