@@ -606,3 +606,25 @@ The pattern syndications is best to use.
 > Redis pubsub gurantees order however, doesn't gurantees delivery since if no body subscribe to a channel the messages will be missed and if a client subscribe to achannel the early messages are missed.
 
 This also has performance downsides which payloadsize, number of subs and number of patterns needs considerations.
+
+## Geospatial
+
+Some apps like uber and waze store geospatial objects which have pairs of latitude and longitude and then perform queries on those objects by Distance or radius. Redis can provide this functionality with a very low latency.
+
+For each longitude and latitude pair a geohash is computed which is 52 bit integer ins redis. Geohash encodes positionsin a short string of letters and digits.
+
+> The GoType is actualy  a sorted set.
+
+We use `GEOADD`, `GEOHASH` and `GEOPOS` to interact. We can also manipulate the data with SET operations like `ZINTESTORE` or `ZUNIONSTORE` however, summing them will move our location so we need to use AGGREGATEMIN option to retain the geospatial point. We can also delete using `ZREM` and list it using `ZRANGE`
+
+> Using geoadd with same key will update the value(location). This is useful for moving objects.
+
+Redis provides Three commands to query geospatial objects. `GEODIST` to calculate distance between two members held by same key. `GEORADIUS` and `GEORADIUSBYMEMBER` will find geospatial members within specific radius.
+`GEORADIUS` accepts langtitude and latitude but `GEORADIUSBYMEMBER` we provide a member to it.
+
+usecases:
+
+* find locations from some specific location
+* advertisement for customers in location.
+
+> Redis does these operations in realtime access and high change rates.
