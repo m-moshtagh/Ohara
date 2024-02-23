@@ -60,3 +60,58 @@ Boolean literals are simple. There are only two logical values that a boolean va
 String literals in Java are specified like they are in most other languages—by enclosing a sequence of characters between a pair of double quotes.
 
 > s you may know, in some other languages strings are implemented as arrays of characters. However, this is not the case in Java. Strings are actually object types. As you will see later in this book, because Java implements strings as objects, Java includes extensive string-handling capabilities that are both powerful and easy to use.
+
+### Variables
+
+#### Scope
+
+block is begun with an opening curly brace and ended by a closing curly brace. A block defines a scope. A scope determines what objects are visible to other parts of your program. It also determines the lifetime of those objects.
+
+> Scopes can be nested. For example, each time you create a block of code, you are creating a new, nested scope. When this occurs, the outer scope encloses the inner scope. This means that objects declared in the outer scope will be visible to code within the inner scope. However, the reverse is not true.
+> *Variables are created when their scope is entered, and destroyed when their scope is left.* 
+
+#### Type conversion & casting
+
+If the two types are compatible, then Java will perform the conversion automatically. However, not all types are compatible, and thus, not all type conversions are implicitly allowed. For instance, there is no automatic conversion defined from double to byte.
+
+Automatic conversion occurs when:
+- Two Types are compatible
+- The destination type is larger than the source type
+
+> here are no automatic conversions from the numeric types to char or boolean. Also, char and boolean are not compatible with each other.
+> As mentioned earlier, Java also performs an automatic type conversion when storing a literal integer constant into variables of type byte, short, long, or char
+
+To create a conversion between two incompatible types, you must use a cast. A cast is simply an explicit type conversion. It has this general form:
+
+`(target-type) value` 
+
+##### Narrowing
+
+```Java
+int i = 23;
+byte b;
+b = (byte) i;
+```
+
+##### Truncation
+
+when a floating-point value is assigned to an integer type
+
+##### Automatic type promotion in expressions
+
+In an expression, the precision required of an intermediate value will sometimes exceed the range of either operand.
+```Java
+byte a = 40, b=50, c=100;
+int d = a * b / c;
+```
+
+Java automatically promotes each byte, short, or char operand to int when evaluating an expression.
+
+> This means that the subexpression a * b is performed using integers not bytes.
+
+Type Promotion Rules:
+1. all byte, short, and char values are promoted to int
+2. if one operand is a long, the whole expression is promoted to long.
+3. If one operand is a float, the entire expression is promoted to float.
+4. If any of the operands are double, the result is double.
+
