@@ -68,13 +68,14 @@ String literals in Java are specified like they are in most other languages—by
 block is begun with an opening curly brace and ended by a closing curly brace. A block defines a scope. A scope determines what objects are visible to other parts of your program. It also determines the lifetime of those objects.
 
 > Scopes can be nested. For example, each time you create a block of code, you are creating a new, nested scope. When this occurs, the outer scope encloses the inner scope. This means that objects declared in the outer scope will be visible to code within the inner scope. However, the reverse is not true.
-> *Variables are created when their scope is entered, and destroyed when their scope is left.* 
+> _Variables are created when their scope is entered, and destroyed when their scope is left._
 
 #### Type conversion & casting
 
 If the two types are compatible, then Java will perform the conversion automatically. However, not all types are compatible, and thus, not all type conversions are implicitly allowed. For instance, there is no automatic conversion defined from double to byte.
 
 Automatic conversion occurs when:
+
 - Two Types are compatible
 - The destination type is larger than the source type
 
@@ -83,7 +84,7 @@ Automatic conversion occurs when:
 
 To create a conversion between two incompatible types, you must use a cast. A cast is simply an explicit type conversion. It has this general form:
 
-`(target-type) value` 
+`(target-type) value`
 
 ##### Narrowing
 
@@ -100,6 +101,7 @@ when a floating-point value is assigned to an integer type
 ##### Automatic type promotion in expressions
 
 In an expression, the precision required of an intermediate value will sometimes exceed the range of either operand.
+
 ```Java
 byte a = 40, b=50, c=100;
 int d = a * b / c;
@@ -107,11 +109,100 @@ int d = a * b / c;
 
 Java automatically promotes each byte, short, or char operand to int when evaluating an expression.
 
-> This means that the subexpression a * b is performed using integers not bytes.
+> This means that the subexpression a \* b is performed using integers not bytes.
 
 Type Promotion Rules:
+
 1. all byte, short, and char values are promoted to int
 2. if one operand is a long, the whole expression is promoted to long.
 3. If one operand is a float, the entire expression is promoted to float.
 4. If any of the operands are double, the result is double.
 
+### Arrays
+
+An array is a group of like-typed variables that are referred to by a common name. Arrays of any type can be created and may have one or more dimensions. A specific element in an array is accessed by its index. Arrays offer a convenient means of grouping related information.
+
+#### One dimentional
+
+`type[ ] var-name;`
+
+> The element type determines the data type of each element that comprises the array.
+
+you must allocate an array using `new` and assign it to month_days. new is a special operator that allocates memory.
+
+`array-var = new type [size];`
+
+> size specifies the number of elements in the array
+
+You can access a specific element in the array by specifying its index within square brackets.
+
+Arrays can be allocated and initialized when they are declared.
+
+> Java strictly checks to make sure you do not accidentally try to store or reference values outside of the range of the array. The Java run-time system will check that all array indexes are in the correct range.
+
+#### Multidimensional Arrays
+
+In Java, multidimensional arrays are implemented as arrays of arrays. To declare a multidimensional array variable, specify each additional index using another set of square brackets.
+
+`int[][] twoD = new int[4][5];`
+
+![TwoDArrays](./images/figure-3-1.png)
+
+> When you allocate memory for a multidimensional array, you need only specify the memory for the first (leftmost) dimension. You can allocate the remaining dimensions separately. For example, this following code allocates memory for the first dimension of twoD when it is declared. It allocates the second dimension separately.
+
+```Java
+int[][] twoD = new int[4][];
+twoD[0] = new int[5];
+twoD[1] = new int[2];
+twoD[2] = new int[4];
+twoD[3] = new int[5];
+```
+
+> **_when you allocate dimensions individually, you do not need to allocate the same number of elements for each dimension._**
+
+#### Alternative Array Declaration syntax
+
+`type var-name[ ];`
+
+### Type inference in Java
+
+In principle, it would not be necessary to specify an explicit type for an initialized variable because it could be inferred by the type of its initializer.
+it is now possible to let the compiler infer the type of a local variable based on the type of its initializer, thus avoiding the need to explicitly specify the type.
+
+Advantages:
+
+- it can streamline code by eliminating the need to redundantly specify a variable’s type when it can be inferred from its initializer.
+- It can simplify declarations in cases in which the type name is quite lengthy
+- when a type is difficult to discern or cannot be denoted.(from an anonymous class)
+
+`var avg = 10.0;`
+
+var is a placeholder for the actual, inferred type. However, when used in most other places, var is simply a user-defined identifier with no special meaning.
+
+This code is valid:
+
+```Java
+Class varDemo {
+    public static void main(String[] args) {
+        // used as type inference
+        var avg = 10.0;
+
+        // used as a userDefined variable
+        int var  = 1;
+
+        // used as both
+        var k = -var;
+    }
+}
+```
+
+Restrictions:
+
+- only one variable can be declared at a time
+- variable cannot use null as an initializer
+- the variable being declared cannot be used by the initializer expression
+- t also cannot be used as the name of other reference types, including an interface, enumeration, or annotation, or as the name of a generic type parameter
+- Local variable type inference cannot be used to declare the exception type caught by a catch statement. Also, neither lambda expressions nor method references can be used as initializers.
+
+`var myArray = new int[10]; // This is valid.`
+`var myArray = { 1, 2, 3 }; // Wrong`
