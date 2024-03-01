@@ -27,3 +27,43 @@ public class NoBody {
     }
 }
 ```
+
+### For each on multidimentional Arrays
+
+```Java
+public class ForEach3 {
+    public static void main(String[] args) {
+        int sum = 0;
+        int[][] nums = new int[3][5];
+        for(int[] x : nums) {
+            for(int y : x)
+                sum+=y;
+        }
+    }
+    System.out.print(sun);
+}
+```
+
+### Return
+
+> One last point: In the preceding program, the if(t) statement is necessary. Without it, the Java compiler would flag an “unreachable code” error because the compiler would know that the last println( ) statement would never be executed. To prevent this error, the if statement is used here to trick the compiler for the sake of this demonstration.
+
+### break & continue on lable
+
+```Java
+public class BreakLoop {
+  public static void main(String[] args) {
+  outer:
+    for (var i = 0; i < 3; i++) {
+      System.out.println("pass" + i + ": ");
+      for (var j = 0; j < 100; j++) {
+        if (j == 10)
+          break outer;
+        System.out.println(j + " ");
+      }
+      System.out.println("This won't print!");
+    }
+    System.out.println("Loops complete");
+  }
+}
+```
