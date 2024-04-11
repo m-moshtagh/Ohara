@@ -9,9 +9,10 @@ java program-name foo bar
 ```
 
 ```java
-public class Demo {
-    public static void main(String[] args) {
-        System.out.println(args[0] + " " + args[1]);
-    }
+public class MainArguments {
+  public static void main(String[] args) {
+    for(var i = 0; i <= args.length - 1; i++) 
+      System.out.printf("The Argument number %d is %s.\n", i + 1, args[i]);
+  }
 }
 ```
