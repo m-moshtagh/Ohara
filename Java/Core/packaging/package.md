@@ -26,6 +26,8 @@ We can compile programs including jar files by specifying classPath and paths to
 
 ## Create a JAR file
 
+We can wrap all the files and classes in a Java archive(JAR) file for a better usability. Java can extract this file in memory and execute it.
+
 We can create jar files using -cvf command and -C to specify the target directory.
 
 ### -c
@@ -43,3 +45,15 @@ JAR filename
 ### -C
 
 Directory containing files to be used to create the JAR
+
+### -m
+
+In order for java to know which class is the main class inside the JAR file we have a manifest.mf file inside `JAR/META-INF/MANIFEST.MF`
+
+```MANIFEST.MF
+Manifest-version: 1.0
+Created-By: Mohammad
+Main-Class: HelloWorld
+```
+
+file describing the manifest.
