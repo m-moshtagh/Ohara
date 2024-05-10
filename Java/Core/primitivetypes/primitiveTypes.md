@@ -16,3 +16,10 @@ We can use other base other than decimals:
 * hex: 0Xff
 
 > In order to read better we can add unerscore anywhere other than beginning of a literal, the end of a literal, right before a decimal point, or right after a decimal point.
+
+## overflow vs round-off error
+
+overflow is when we assign bigger value than the data type size.
+round-off error is when we compute result of decimal numbers however a fault occurs hence, we need to use BigDecimals for this case.
+
+> In case of round-off error we can compare the values with a standard like: `Math.abs(x - 1) < 0.0001`
