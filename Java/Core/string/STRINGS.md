@@ -12,10 +12,7 @@ equality.
 
 ## String Pool
 
-Whenever we create a String literal JVM will put it inside String pool in Heap memory. So it can reuse it. Strings are
-immutable so, if we change it another String will be created in pool instead of mutate the current one. However, this
-pool enables us to reuse exact strings if they are the same. In some cases like when we use toString() the value will
-not register in pool but, we can do it by using intern() method.
+Whenever we create a String literal JVM will put it inside String pool in Heap memory. in CompileTime So it can reuse it. Strings are immutable so, if we change it another String will be created in pool instead of mutate the current one. However, this pool enables us to reuse exact strings if they are the same. In some cases like when we use toString() or initialize String in runtime with new String() the value will not register in pool but, we can do it by using intern() method.
 
 ```java
 public class StringDemo {
@@ -29,3 +26,16 @@ public class StringDemo {
     }
 }
 ```
+
+### String Transformations to Other Primitives
+
+We can use parse builtIn methods to convert other primitives to String and also use valueOf functions to transform a string representation of a literal to the actual datatype.
+
+## StringBuffer & StringBuilder
+
+Whenever we need to make multiple operations on String valus, since String class is immutable we can use StringBuffer & StringBuilder.
+These two classes use a fixed array then whenever the limit is going to exceed, it reconstructs the array.
+
+> If we have an estimation of the final size of the string we are going to build we can create a fixed array in order to avoid reconstruction overhead.
+
+It is also efficient to return compact String after operations on StringBuilder or StringBuffer is finished. We can use toString() or trimToString() methods.
