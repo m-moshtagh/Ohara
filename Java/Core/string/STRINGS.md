@@ -2,13 +2,66 @@
 
 ## Concept
 
-String is an immutable class representing String literals in java. They will instantiate inside heap and are managed
-in Spring pool.
+String is an immutable class representing String literals in java. They will instantiate inside heap and are managed in Spring pool.
 
 ## Equality check
 
 We should always use equals() method to check the equality of string literals. The `==` operator checks the reference
 equality.
+
+## Frequent methods
+
+### Concatination
+
+We can concat operands with '+' and when either one is a String concatination occurs.
+
+> The expressions are evaluated from left to right. for example 1 + 2 + 'c' -> 3c
+
+### length
+
+We can get the length by `str.length()` method.
+
+> This method uses normal counting
+
+### charAt
+
+We can query a character in String by the index with charAt() method.
+
+### indexOf
+
+We can find the first index of the first occurence of a character by indexOf() method.
+We can pass int number of a character, a character and a whole String.
+We can also pass an integer as second parameter to search from that index.
+
+```Java
+var name = "animals";
+System.out.println(name.indexOf("al"));
+System.out.println(name.indexOf('a', 4));
+```
+
+> When no character is found -1 would return.
+
+### subString
+
+This method also looks for characters by index and return that piece of String.
+We need to pass a first index parameter and a second optional parameter for end index.
+
+> The endIndex parameter will not be included in the returned String.
+
+```Java
+var name = "animals";
+System.out.println(name.substring(3)); // mals
+System.out.println(name.substring(name.indexOf('m'))); // mals
+System.out.println(name.substring(3, 4)); // m
+System.out.println(name.substring(3, 7)); // mals
+System.out.println(name.substring(3, 3)); // empty string
+System.out.println(name.substring(3, 2)); // exception
+System.out.println(name.substring(3, 8)); // exception
+```
+
+### Adjusting Case
+
+We can adjust Cases with `toLowerCase()` and `toUpperCase()`, which return a new string since they are immutable.
 
 ## String Pool
 
