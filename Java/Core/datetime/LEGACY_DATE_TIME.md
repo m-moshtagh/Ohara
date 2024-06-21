@@ -1,4 +1,4 @@
-# Date and time using java:
+# Date and time using java
 
 Java has various classes for date and time. some are now old because java 8 provided a simple API for Date and Time in
 java.time package which is really fantastic.
@@ -14,7 +14,7 @@ java.time package which is really fantastic.
 * toDay -> /24
 * toYear -> /365
 
-## Old java.util.Date class:
+## Old java.util.Date class
 
 > Date date = new Date();
 
@@ -24,7 +24,7 @@ This class also has multiple get methods like getDate(), getDay() which returns 
 
 > to make getYear() work we need to sum it with 1900.
 
-## Calendar class:
+## Calendar class
 
 This is an abstract class in java because we have lots of calendars around the world.
 We use Gregorian Calendar which implements Calendar. We have several methods:
@@ -35,12 +35,12 @@ We use Gregorian Calendar which implements Calendar. We have several methods:
 
 > There are also a bunch of set methods. this class is mutable.
 
-## Time zones:
+## Time zones
 
 We have TimeZone class but, we can't initialize it, but we can get it from gregorian Calendar. We can set timeZone with
 a Timezone ID.
 
-## Joda Date and Time API:
+## Joda Date and Time API
 
 The reason this API was introduced was that the legacy class was mutable, contained both date and time and was in millis
 but the new one contains LocalDate, LocalTime and, LocalDateTime which are in seconds and nanoseconds.
@@ -54,7 +54,7 @@ but the new one contains LocalDate, LocalTime and, LocalDateTime which are in se
 
 *: we have parse() method which we can pass String formatted like "year-day-month"
 
-## Date & Time classes:
+## Date & Time classes
 
 Timezone information is not available in LocalDateTime class. so, for including time zone we have a class called
 
@@ -71,7 +71,7 @@ Timezone information is not available in LocalDateTime class. so, for including 
 * Instant: This class stores information of instant of time. this is for capturing a moment. It will be in GMT time. So
   it means if we create two instant objects in the same time in two different places, they will have same values.
 
-## DateFormatter:
+## DateFormatter
 
 This class is here to specify format of Date & Time.
 
@@ -89,7 +89,7 @@ This class is here to specify format of Date & Time.
   accepts a String.
   *: For applying format we need to call format() method and pass the LocalDateTime class.
 
-## ChronoField:
+## ChronoField
 
 LocalDateTime has a get method which we can pass ChronoField.ANY_CONSTANT and get the value we want. this can't be used
 for timezone information.
