@@ -53,3 +53,18 @@ instance variables can use access modifiers
 ![instace variable modifiers](./images/instance_variable_modifiers.png)
 
 > The compiler does not apply a default value to final variables, though. A final instance or final static variable must receive a value when it is declared or as part of initialization.
+
+## Varargs
+
+a method may use a varargs parameter (variable argument) as if it is an array.
+We must follow rules for applying varags:
+
+* A method can have at most one varargs parameter.
+* If a method contains a varargs parameter, it must be the last parameter in the list.
+
+### Calling Methods with Varargs
+
+You can pass in an array, or you can list the elements of the array and let Java create it for you.
+
+> You can even omit the varargs values in the method call, and Java will create an array of length zero for you.
+> We can also access them like we access arrays.
