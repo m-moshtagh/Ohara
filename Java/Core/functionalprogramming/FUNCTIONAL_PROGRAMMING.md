@@ -24,15 +24,10 @@ Java has some predefined functional interfaces. we can classify them to 4 groups
 * BinaryOperator: accepts arguments of same type and return a result.
 
 > Consumers have a default method called andThen() which we can chain consumers together.
-
 > Suppliers have a method called get()
-
 > Functions accept two Generic types T,R for input and output of method apply(); we can also chain them like consumers.
-
 > We also have some special functions named UnaryOperator and BinaryOperator which extend this interface.
-
 > Predicate has a test() method. We can combine predicates using and(), or() and negate() methods. If we have primitive
-
 > If we have operations on primitive types we have special specializations of above classes like IntPredicate,
 > IntToLongFunction and BooleanSupplier.
 

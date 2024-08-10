@@ -1,7 +1,6 @@
 # Lambda Expressions
 
-Lambda expression is actually anonymous implementation of a single method interface(functional interface) which can be
-stored as an object which can be passed through methods as arguments.
+Lambda expression is actually anonymous implementation of a single method interface(functional interface) which can be stored as an object which can be passed through methods as arguments.
 
 ## Transmutation
 
