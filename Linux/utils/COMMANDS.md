@@ -51,6 +51,11 @@ We can see partition metadata using this command.
 
 Displays  current partition size and mount points.
 
+```bash
+# Shows details of block devices
+lsblk -f
+```
+
 ## iostat
 
 Displays IO rates and disk statistics of partitions.
@@ -72,6 +77,14 @@ we can see the mount points and other info using df command.
 
 ```bash
 df -h -T  -i
+```
+
+## du
+
+We can see disk usage by using this command.
+
+```bash
+du -a -s /etc/dev/
 ```
 
 ## fsck
