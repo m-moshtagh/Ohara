@@ -90,3 +90,22 @@ du -a -s /etc/dev/
 ## fsck
 
 We can use fsck to check and repair linux filesystems. In order to use this command we need to first `umount` the partition. we need to check the exit code using `echo $?`.
+
+## groupadd
+
+`groupadd --gid 1001 groupname`
+
+## getent
+
+`getent group groupname`
+`getent passwd username`
+`getent shadow username`
+
+## useradd
+
+`useradd --comment "comment" --home-dir /home/dir --make-home --uid 1000 --gid primaryGroupname --groups group, group name`
+
+## usermod
+
+add a user to a group
+`usermod -aG groupName username`
