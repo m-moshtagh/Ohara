@@ -109,3 +109,48 @@ We can use fsck to check and repair linux filesystems. In order to use this comm
 
 add a user to a group
 `usermod -aG groupName username`
+
+## chown
+
+we can change file owner and group using this command.
+
+```bash
+chown user file.txt
+chown user:group file.txt
+chown :group file.txt
+```
+
+## chgrp
+
+we can change group ownership of a file
+
+```bash
+chgrp group file.txt
+```
+
+## chmod
+
+```bash
+chmod g-w file.txt
+chmod ug=rwx file.txt
+chmod ugo+r file.txt
+chmod a=rw file.txt
+chmod --reference sourceFile.txt targetFile.txt
+chmod 664 file.txt
+```
+
+## id
+
+we can view current user detail of UUID, GID and groups it belongs to.
+
+```bash
+id -gn # check current group's name.
+```
+
+## newgrp
+
+we can change current user group
+
+```bash
+newgrp group
+```
