@@ -16,6 +16,8 @@ This is specification that defines standards for how javascript should be. Since
 We store data temporary inside memory inside a container named variables. In legacy before ES6 we used `var` to declare variabls, now we use `let` for modifiable variables and `const` for constant variables.
 `let name = 'foo';`
 
+> The problem with var is that it even exists outside the block it's defined in which leads to bugs.
+
 ### Naming rules
 
 * Can't be keyword
