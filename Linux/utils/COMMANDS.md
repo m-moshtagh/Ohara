@@ -154,3 +154,11 @@ we can change current user group
 ```bash
 newgrp group
 ```
+
+## which
+
+shows full path name of a shell command passed as argument.
+
+## whereis
+
+locates, program binaries, source code and manual pages.

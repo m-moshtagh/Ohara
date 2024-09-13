@@ -29,3 +29,21 @@ There are two types to set permission to a file:
 
 * Symbolic mode
 * Octal mode
+
+## umask
+
+In order to change the default permissions of creating files and directories we need to set umask.
+by default the file permission is 666 and directory is 777.
+How it works is that default umask is 0022 and the default permission will be subtracted from umask value and the permission would set for file or directory.
+
+## SUID
+
+The suid permission works directly with executable files. What it dows is that it lets users to execute the file with the owner's permission. This is useful for run and stop scripts of server applications which need root permission to be executed. it's represented with `s` and `S` if x is not given to file.
+
+## SGID
+
+This tells the linux to run program file with the group permission, For directories it helps to create an envirnment for all users to share files.
+
+## Sticky bit
+
+This is helpful for protecting files of different users from being deleted by other users working in the same directory which don't own the file even if they belong to the group that has write access to the file.
