@@ -132,3 +132,34 @@ falsy:
 
 * '|'
 * '&'
+
+## Control Flow
+
+### conditional
+
+In javascript we have `if`, `else if` and `else` also, switch cases and syntex is pretty much the same as other languages.
+
+### Loops
+
+The synatx for lagacy for and while loops is the same with other langs like java.
+For iterating over elements in array or objects we have two loops: `for-in` & `for-of`
+
+```javascript
+let person = {
+    name: 'foo',
+    age: 10
+};
+
+for(let property in person)
+    console.log(property, person[property]);
+```
+
+> Since we may not know the exact property names of the person objects we use bracket notation instead of dot notation to access the fields.
+
+For of started from ECS6. It's more ideal to loop through arrays because it doesn't deal with the index stuff and directly picks the elements.
+
+```javascript
+let colors = ["green", "red", "blue"];
+for(let color of colors)
+    console.log(color);
+```
