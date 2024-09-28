@@ -162,3 +162,30 @@ shows full path name of a shell command passed as argument.
 ## whereis
 
 locates, program binaries, source code and manual pages.
+
+## locate
+
+This command searches a local db `mlocate.db` under `/var/lib/mlocate/` and shows all related files, libraries for a program.
+
+## find
+
+this command searches for files under the specified file hierarchy.
+
+## alias
+
+We can define abbreviation for commands. without options lists all aliases defined in system.
+
+```bash
+alias lss='ls -ltrh'
+```
+
+> To create a permanent alias we need to define it inside .bashrc
+
+## ln
+
+we can create links to files using ln command.
+
+```bash
+ln /root/target /root/link
+ln -s /root/target /root/simbol
+```
