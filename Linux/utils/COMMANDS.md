@@ -189,3 +189,13 @@ we can create links to files using ln command.
 ln /root/target /root/link
 ln -s /root/target /root/simbol
 ```
+
+## history
+
+shows history of the commands the user has called.
+We have a $histfile which is the path of the history file. we can clear the commands and then reload it and things like this...
+
+```bash
+!! # re execute the last command
+!n # re execute the command in n line
+```
