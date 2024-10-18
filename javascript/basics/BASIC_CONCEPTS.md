@@ -597,3 +597,77 @@ catch (e) {
 
 1. `var` is function scoped however let is block scopec.
 2. global variables declared with `var` attach to browser window object and if a library uses that it will be replaces.
+
+### this object
+
+this references the object that is executing the current function.
+When we are inside a method, using this we are pointing to the current object however in regular functions we are referencing the global or window object.
+
+> inside callback functions like foreach this by default referes to window object however, they accept a this? argument which we can pass an object that can be refered to as this.
+
+```javascript
+const video = {
+    titles = 'a',
+    tags: ['a', 'b', 'c'],
+    showTags() {
+        this.tags.forEach(function(tag) {
+            console.log(this.title, tag);
+        }, this);
+    }
+}
+```
+
+In callback functions or regular functions. the value of this(window object) changes whenever new function is called, we can assign this to a new variable and use that in the callback function.
+
+```javascript
+const video = {
+    titles = 'a',
+    tags: ['a', 'b', 'c'],
+    showTags() {
+        const self = this;
+        this.tags.forEach(function(tag) {
+            console.log(this.title, tag);
+        });
+    }
+}
+```
+
+The second approach is to use call(), apply() and bind() functions:
+
+```javascript
+function playVideo(a, b) {
+    console.log(this);
+}
+
+playVideo(); // displays window object
+playVideo.call({name: 'm'}, 1, 2);
+playVideo.apply({name: 'm'}, [1, 2]);
+playVideo.bind({name: 'm'})(); // bind returns a funtion which assigns this in that function.
+
+const video = {
+    titles = 'a',
+    tags: ['a', 'b', 'c'],
+    showTags() {
+        this.tags.forEach(function(tag) {
+            console.log(this.title, tag);
+        }.bind(this));
+    }
+}
+
+```
+
+The third solution is that since ECMAscript 6 we can inherit this from the containing function.
+
+```javascript
+const video = {
+    titles = 'a',
+    tags: ['a', 'b', 'c'],
+    showTags() {
+        this.tags.forEach(tag => {
+            console.log(this.title, tag);
+        });
+    }
+}
+```
+
+## OOP
