@@ -199,3 +199,53 @@ We have a $histfile which is the path of the history file. we can clear the comm
 !! # re execute the last command
 !n # re execute the command in n line
 ```
+
+## Commands for manipulating files
+
+`cat` => we can use cat to print, files.
+`paste` => we can merge lines of files
+`od` => It's used to display the contents of a file in various formats, including octal, hexadecimal, decimal, and ASCII. It's particularly useful for debugging binary files.
+
+```bash
+od -c filename
+od -x filename
+od -b filename
+```
+
+`split` => split a file into pieces
+`sort` => sort lines of text files
+`nl` => number line of files
+`wc` => count the contents of a file
+`cut` => remove sections from each line of files
+`head` => get 10 firt lines of a file
+`tail` => get 10 last lines of a file
+`more` => view file
+`less` => view a file better:D
+`uniq` => report or ommit repeated lines
+`sed` => modify a text file
+
+```bash
+sed 's/foo/bar/g/' foo.txt // replace foo with bar in foo text file globally.
+```
+
+## man
+
+an interface for comamnd manuals.
+`man -k` => `apropos`
+`man -f` => `whatis`
+
+we can find different sections by numbers
+
+* 1 => User commands
+* 2 => System calls
+* 3 => Library calls
+* 4 => Device calls
+* 5 => File formats
+* 6 => Games
+* 7 => Miscellaneous
+* 8 => Adminstrative commands
+* 9 => kernel routines
+
+## ps
+
+we can view all processes using `ps -ef` or `ps aux` command.
