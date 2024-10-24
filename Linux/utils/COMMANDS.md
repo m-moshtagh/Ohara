@@ -249,3 +249,68 @@ we can find different sections by numbers
 ## ps
 
 we can view all processes using `ps -ef` or `ps aux` command.
+print process tree using `ps -ejh` or `ps axjf` and we can also use `pstree`
+If we need to use process running as root we can use `ps -U root -u root u`
+
+## jobs
+
+Displays the status of jobs in background. We can see details using `- l` option.
+We can pause a running command using `CTRL + z` and then using bg command and number that jobs command give us send it to run in background.
+We can also use `fg` command to send a backgorund job to the foreground.
+
+## kill
+
+We can send a signal to a process using kill command. list of signals is available in `kill -l`
+
+## killall
+
+Kill a process by name.
+
+## nice & renice
+
+We can run a program with modified scheduling priority. renice can change the niceness level of a command later using processId, process started by a certain user or groups.
+
+```bash
+nice --9 ping 9.9.9.9 // sets niceness level of command to -9
+```
+
+## compressing  tools
+
+We can compress files with different tools, xz and bzip2 are recommended. except zip command all of them replace the original file.
+The first column is compressing command, second one is for decompressing(we can use -d with the original command), third one is for displaying the original content it.
+
+gzip :: gunzip :: zcat
+bzip2 :: bunzip2 :: bzcat
+xz :: unxz :: xzcat
+zip :: unzip :: zless
+
+## archiving files
+
+We can archive and backup multiple files using `tar, cpio, dd` tools.
+a tar file is created using `tar -cvf foo.tar files...`
+
+## Streams
+
+We can redirect STDOUT or STDERR following special pipes
+1> or > redirects STDOUT
+2> redirects STDERR
+&> redirects all output
+
+> we can send STDERR to /dev/null which is a black hole.
+
+2>&1 | less redirects STDERR to STDOUT
+
+We can combine STDOUTS of two commands:
+`cal 2017; cal 2023 | less`
+
+## xargs
+
+this takes what is coming from STDOUT and puts it as the STDINPUT of a command.
+
+```bash
+ls -l EMPTY?.txt | xargs -p rm
+```
+
+## $() & ``
+
+We can also execute commands with the output of other commands with help of these.
