@@ -288,6 +288,21 @@ zip :: unzip :: zless
 
 We can archive and backup multiple files using `tar, cpio, dd` tools.
 a tar file is created using `tar -cvf foo.tar files...`
+We can also create tarballs by adding `--xz --gzip --bzip2` or their abbreviation `-J -z -j`
+`cpio` is another tool for archiving our files.
+
+## dd
+
+We can use dd for backing up files or disks, We can also create files with a fixed space.
+options:
+`if` for input device and `of` for output device.
+`count` sets number of input blocks to copy.
+`status` sets info to desplay to STDERR can be none, noxfer, progress
+
+```bash
+dd if=/dev/sdb of=/dev/sdc status=progress
+dd if=/dev/zero of=/dev/sdc status=progress # fills sdc device with zeros.
+```
 
 ## Streams
 
