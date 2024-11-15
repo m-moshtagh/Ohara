@@ -54,6 +54,22 @@ In order for java to know which class is the main class inside the JAR file we h
 Manifest-version: 1.0
 Created-By: Mohammad
 Main-Class: HelloWorld
+
 ```
 
+> There should be space after `:` and a newline after las line.
+
 file describing the manifest.
+
+## create a bat file script
+
+```bash
+set JAVA_HOME=C:\Program Files\Zulu\zulu-23
+set PATH=JAVA_HOME;%PATH%
+java -version
+javac -d .\target\classes\ .\src\*.java
+javadoc src\*.java -d doc
+jar -cfm hello.jar .\manifest.txt -C .\target\classes\ .
+java -jar hello.jar
+pause
+```
