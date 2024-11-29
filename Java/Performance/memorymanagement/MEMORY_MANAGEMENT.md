@@ -77,6 +77,9 @@ We can access some Runtime hardware statistics using this class. for example
 * `Runtime.getRuntime().freeMemory()` shows free heap memory
 * `Runtime.getRuntime().maxMemory()` shows max memory set for heap
 * `Runtime.getRuntime().totalMemory()` Shows total memory it uses on heap memory
+* Used memory is computed by `totalMemory() - freeMemory()`
+
+![Runtime class](./pics/RuntimeClass.png)
 
 > We can set custom values for these settings by passing appropriate parameters when using java command to run the
 > program.

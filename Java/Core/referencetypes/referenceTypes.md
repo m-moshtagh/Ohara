@@ -15,3 +15,5 @@ a reference “points” to an object by storing the memory address where the ob
 * Referecnce types start with uppercase letter by convention.
 * methods can be called following a reference type.
 * Reference types can be assigned null. which means they do not currently refer to an object
+
+> Reference size depends on the arch of the system. In 64bit systems reference size is 64 bit and so it is in 32bit systems.
