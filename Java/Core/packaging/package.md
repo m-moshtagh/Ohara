@@ -2,11 +2,19 @@
 
 We use packages to categorize classes within our programs.
 
+## Usage
+
+* namespace(duplicate class name)
+* visibility / scope(package-private)
+* As library
+* Structure of project / separate sub-systems, layers or roles
+* package name can be used as path of the Class and where it is coming.
+
 ## Import
 
 In order to use classes from different packages, we need to import packages.
 
-> Importing using wildcards doesn't effect classes within subdirectories.
+> Importing using wildcards doesn't affect classes within subdirectories.
 
 ## Javac options
 
@@ -22,11 +30,12 @@ Location of classes needed to compile the program.
 
 We can compile programs including jar files by specifying classPath and paths to jar files.
 
-> we can seperate multiple paths using, ";" in windows and ":" in linux and macos.
+> we can separate multiple paths using, ";" in windows and ":" in linux and macOS.
 
 ## Create a JAR file
 
-We can wrap all the files and classes in a Java archive(JAR) file for a better usability. Java can extract this file in memory and execute it.
+We can wrap all the files and classes in a Java archive(JAR) file for a better usability. Java can extract this file in
+memory and execute it.
 
 We can create jar files using -cvf command and -C to specify the target directory.
 
@@ -48,7 +57,8 @@ Directory containing files to be used to create the JAR
 
 ### -m
 
-In order for java to know which class is the main class inside the JAR file we have a manifest.mf file inside `JAR/META-INF/MANIFEST.MF`
+In order for java to know which class is the main class inside the JAR file we have a manifest.mf file inside
+`JAR/META-INF/MANIFEST.MF`
 
 ```MANIFEST.MF
 Manifest-version: 1.0
