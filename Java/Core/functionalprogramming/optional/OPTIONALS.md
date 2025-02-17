@@ -1,5 +1,76 @@
 # Optional
 
+## Null
+
+null is a type defined in java language specification, however since it doesn't have a name we can't define a variable
+of type null or cast or use instance of operator on it.
+
+when null appears in program NullPointerException will be thrown.
+
+The traditional ways to avoid nulls:
+
+* assertions
+* if/else statements
+* methods of Objects class
+* try/catch blocks
+
+best practices for parts of app that we don't have control on:
+
+* document API
+* check for nulls in upper layers
+* fail fast
+* use exceptions to indicate that invalid value has been received
+
+best practices for indoor code:
+
+* never pass null to a function
+* never return null from a function
+* return empty collections or optionals
+
+> never overcomplicate things
+
+## Annotations
+
+### spring
+
+spring provides annotations for static analysis for null values in scope of fields, return types, parameters, package
+and API.
+
+* @NonNull
+* @Nullable
+* @NonNullApi
+* @NonNullFields
+
+these produce warnings at compile time.
+
+### Hibernate validator
+
+This is the implementation of a bean validation JSR and is not bound to only persistence layer. These validations are
+performed at runtime. we can
+
+* @NotNull
+* @Size
+* @Min/@Max
+* @PositiveOrZero
+
+> @Column(nullable == false) provides a constraint on table.
+
+We apply the annotations on our DTO or entity classes.
+in controller level we need to use `@Valid` in parameter of getting that type.
+In service layer we also need to annotate the class with `@Validated`.
+In persistence level the entity will be validated when entity manager tries to flush.
+
+> above using @NotNull on top of fields we can use it in a collection definition. `List<@NotNull String> strings.`
+
+### Lombok
+
+Lombok also has annotation that will generate condition checks for null values and throw exception.
+
+* @NonNull
+
+> This can be used with @Data annotation to add checks on fields annotated with @NonNull in constructors and setter
+> getters.
+
 ## Null is a smell!
 
 In case of null we the worst part that always comes to mind is runtime NullPointerException Which is a pain in the ass.
@@ -21,7 +92,7 @@ Here are some of best practices:
 > However, The best option is to create a function with no parameter and do the default behavior Then, overload it with
 > the proper parameter we need.
 
-####  
+####               
 
 ```java
 import java.util.Optional;
