@@ -71,6 +71,18 @@ Lombok also has annotation that will generate condition checks for null values a
 > This can be used with @Data annotation to add checks on fields annotated with @NonNull in constructors and setter
 > getters.
 
+## Null Object pattern
+
+instead of using null reference to represent the absence of an object, it uses an object that implements the expected
+interface that does nothing and only shows default behaviour, hides details from its collaborators.
+
+Drawbacks:
+
+* error prone
+* should it do nothing? or should it fail with exception?
+* is null check still needed?
+* what if parent class is final?
+
 ## Null is a smell!
 
 In case of null we the worst part that always comes to mind is runtime NullPointerException Which is a pain in the ass.
@@ -92,7 +104,13 @@ Here are some of best practices:
 > However, The best option is to create a function with no parameter and do the default behavior Then, overload it with
 > the proper parameter we need.
 
-####               
+#### use orElse or orElseGet to unwrap value
+
+#### Never use `Optional.get()` directly, firs make sure with `Optional.isPresent()` or `isEmpty()`
+
+#### never use Optional on fields because it's not serializable.
+
+#### Examples
 
 ```java
 import java.util.Optional;
