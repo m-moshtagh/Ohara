@@ -1,14 +1,14 @@
-## Dependency Injection
+# Dependency Injection
 
 ***
 
-### Concept
+## Concept
 
 Injecting a dependant object by another Object is called dependency injection.
 It means we don't explicitly `new` the object(initialize), a some sort of third
 party object handles the initialization and pass the dependency to us.
 
-### Types of DI
+## Types of DI
 
 * By class properties - least preferred
     * Can be public or private properties
@@ -23,26 +23,27 @@ class can remain immutable.
 <br>
 NOTE: Final fields is also best practice.
 <br>
+
 [**Property Injection is EVIL by: Mario
 Junior*](https://www.linkedin.com/pulse/avoid-private-field-dependency-injection-here-why-m%C3%A1rio-j%C3%BAnior/)
 
-### Concrete Classes vs Interfaces
+## Concrete Classes vs Interfaces
 
 * Interfaces is preferred because it gives us the runtime polymorphism ability.
 * We can have multiple implementations like Java DataSource.
 * Interface Segregation of SOLID principle.
 
-### Inversion of Control
+## Inversion of Control
 
 Is a technique to allow dependencies inject at runtime.
 
-### Using DI with Spring
+## Using DI with Spring
 
 First we need to provide our dependency classes and mark them with one of spring stereotypes.
 Then we need to specify them in the dependent class and use one of the methods specified above
 with `@Authowired`.
 
-### @Qualifiers
+## @Qualifiers
 
 If we have multiple implementations of dependency interface, spring can't figure out
 by default which dependency to inject so, We use `@Qualifier(name="dependencyName")`.
@@ -57,12 +58,12 @@ public class test {
 }
 ```
 
-### @Primary
+## @Primary
 
 When we have multiple implementations but, we want one of them to be the default bean so if we don't mention `@Qualifer`
 That been get injected, we can use `@Primary`. We specify it on top the dependency Class declaration.
 
-### Spring Profiles
+## Spring Profiles
 
 Profiles allow us to have certain beans that have a specific configuration.
 NOTE: we can have multiple beans with one qualifying name and, we can make a

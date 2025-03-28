@@ -1,11 +1,16 @@
-## The Spring Context
+# The Spring Context
 
 This is also called Application Context or Spring IoC container
 Best brief explanation with code samples:<br>
 [**Baeldung spring container**](https://www.baeldung.com/spring-application-context)
 ***
 
-### Application Context interfaces
+## Spring Container
+
+container is a predefined program or component, and it's responsible for creating the object, holding them in memory and
+also injecting them into another object as required.
+
+## Application Context interfaces
 
 The Spring IoC container is responsible for managing the objects of an application.
 It uses dependency injection to achieve inversion of control.
@@ -16,13 +21,13 @@ The important features of ApplicationContext are resolving messages,
 supporting internationalization, publishing events, and application-layer specific contexts.
 This is why we use it as the default Spring container.
 
-### Bean
+## Bean
 
 a bean is an object that the Spring container instantiates, assembles, and manages.
 In order to configure beans we can use Java-based configuration, annotation-based configuration
 and XML configuration.
 
-### Types of Application Context
+## Types of Application Context
 
 * AnnotationConfigApplicationContext
 * AnnotationConfigWebApplicationContext
@@ -31,7 +36,7 @@ and XML configuration.
 * ClassPathXmlApplicationContext
 * SpringApplication in spring boot applications.
 
-### Spring bean lifecycle
+## Spring bean lifecycle
 
 ![Bean-life-Cycle](../../pics/bean-life-cycle.png)
 ![Bean-life-Cycle](../../pics/bean-life-cycle2.png)
