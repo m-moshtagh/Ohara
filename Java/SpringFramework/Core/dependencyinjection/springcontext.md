@@ -21,11 +21,21 @@ The important features of ApplicationContext are resolving messages,
 supporting internationalization, publishing events, and application-layer specific contexts.
 This is why we use it as the default Spring container.
 
+> Spring Application Container initializes bean with Eager behavior by default. On The other hand Bean Factory is lazy.
+> Spring Container bean configuration can be changed to use lazy behavior for expensive objects.
+
 ## Bean
 
 a bean is an object that the Spring container instantiates, assembles, and manages.
 In order to configure beans we can use Java-based configuration, annotation-based configuration
 and XML configuration.
+
+Beans are defined with name and ID property and can be accessed via them. different names(aliases) can be assigned to a
+bean.
+
+> If we declare two beans from a same Class, and the scope is singleton, two objects will be created for that class.
+> This means the spring container scope for beans is actually multi-ton pattern. We can also call a method from spring
+> container that returns definition types which will return a Map which is actually basic of multi-ton pattern.
 
 ## Types of Application Context
 
