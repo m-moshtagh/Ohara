@@ -93,3 +93,52 @@ may bundle RIs or proprietary alternatives.
 | **Scope**            | HTTP traffic, lightweight            | Enterprise-grade, full-stack              |
 | **Containers**       | None                                 | Web, EJB, CDI, and others                 |
 
+> static (passive) web contents are files like images, gifs, html, css files. However, Dynamic (active) contents are the
+> result of a program running on the server like CGI or Java that creates the result.
+
+## Web module
+
+There's a standard structure for application servers to run our web modules. The name of directories or paths may differ
+in different application servers but the total Concept is common.
+
+### WEB-INF
+
+This is one of the important directories that contains web.xml(deployment descriptor) file which describes how the web
+module gets deployed.
+
+It can contain `classes` directory that contains bytecode of classes or `lib` to contain JAR files.
+
+> It's recommended to put JSP files under WEB-INF to prevent clients to route directly to them as they may contain
+> important information
+
+### META-INF
+
+This directory contains `context.xml` files that describe the context information.
+
+### war file
+
+Files needed to be served by application server can be put in a default path or told the location. This is called
+Exploded however we can archive them in a .war format and application server understand that.
+
+> It's configurable for application server to make the war exploded each time or not. it's considerable for performance
+> issues.
+
+## Deployment
+
+The process of deployment is the definition of installing our application on serverContext.
+
+It takes further steps:
+
+1. load descriptors(web.xml) or scan classes for annotations
+2. Creating Servlet Context per module.
+3. Creating resources for application servers like creating object of servlets, filters, listeners and ...
+
+### ServletContext
+
+It's an object that contains all the information like what servlets, filters, sessions, requests instances are created
+in module.
+
+### Context path
+
+We can separate different modules with a path in the URL which we call ContextPath that is used to route requests to
+different modules of application.
