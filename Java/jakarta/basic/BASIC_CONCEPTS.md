@@ -133,12 +133,52 @@ It takes further steps:
 2. Creating Servlet Context per module.
 3. Creating resources for application servers like creating object of servlets, filters, listeners and ...
 
-### ServletContext
+## ServletContext
 
 It's an object that contains all the information like what servlets, filters, sessions, requests instances are created
-in module.
+in module. when a module is deployed an object of the ServletContext of specified module with a unique contextPath is
+created.
+
+We can access all the data with the `ServletContext` interface which is accessible via servlet, filter, Listeners and
+request Objects.
+
+We can use `setAttribute()` to bind an object to the Application scope and make that object accessible through the life
+cycle of the module until its un deployed.
 
 ### Context path
 
 We can separate different modules with a path in the URL which we call ContextPath that is used to route requests to
 different modules of application.
+
+### Set Servlet, Filter, Listeners data in ServletContext
+
+We have three ways:
+
+1. Manually use `ServletContext.add()` method
+2. use `web.xml` and let application server to handle the add method for the mentioned classes
+3. use `annotations` let application server to handle the add method for the mentioned classes
+
+## Request & Response
+
+When application server(Container) starts, a bunch of objects like request and response are created, when a module is
+deployed an object of the ServletContext of specified module with a unique contextPath is created and whenever a request
+is made to the socket listener of container the request object is filled and passed to the first Servlet or filter in
+the path and when the operation is finished, the response object is filled and returned to the client.
+
+### Request Scope
+
+Whenever we bind reference of an object in the request object with the `setAttribute()`, the lifecycle of that object is
+when the request is finished.
+
+## Application Server ThreadPool
+
+When applications start, they have a thread pool responsible for handling all the socket connections made to the server
+
+### Async Servlet
+
+Servlets support async operations which can be activated by setting `asyncSupport true`. The simple solution is to
+Retrieve `AsyncContext` instance from request by calling `startAsync()` and then create a runnable or thread to handle
+the operation with the async context. At last the operation is finished by calling a complete method on the context.
+
+> This approach is useful to prevent application server threads overloaded. We can create a thread pool and assign it
+> to the application scope and implement runnable operations and submit the tasks to the threadPool.
