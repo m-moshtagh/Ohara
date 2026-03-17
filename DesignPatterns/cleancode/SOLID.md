@@ -100,15 +100,13 @@ public class Util {
 * Class should be open for extension but closed for modification. Means for new features we must not modify existing
   code.
 * We need to be able to extend a class behavior, without modifying it.
-    * Having Private variables and using getters and setters when we only need them.
+  * Having Private variables and using getters and setters when we only need them.
 * Use abstract base classes.
 
 > In order to achieve this principle, All we have to do is to bring a layer of abstraction to our code in order
 > to have simple extension. Inheritance, Polymorphism and Strategy pattern help achieve this principle.
-
 > All we have to do is to create abstract class or interface and each time create a class that implements a new feature
 > then use factory pattern with runtime polymorphism to use the specific class we want.
-
 > If we expose public API we need to apply this pattern so, if we change the code inside our framework the client code
 > doesn't break.
 
@@ -215,15 +213,16 @@ public class BugFix extends Task {
 
 > The brief work this principle wants is to not create fat interfaces and, avoid creating methods that target class of
 > interface might not implement them.
-
 > We can implement multiple interfaces in Java so, we can have multipurpose interfaces easily.
 
-#### Solutions
+#### Solutions2
 
 * For our own code we can simply make more interfaces.
 * For legacy code we can use Adapter design pattern.
 
 ### Dependency Inversion
+
+This is a design principle in which the control of object creation, configuration and lifecycle is passed to a container framework.
 
 * Abstraction should not depend upon details.
 * Details should depend upon the abstraction.
@@ -238,8 +237,3 @@ public class BugFix extends Task {
 This is a technique that allows the creation of dependent objects outside a class and provides those objects to a
 class. We can achieve this by defining the dependency as a local member and initialize it using the constructor.
 However, in large scale managing these instances will be a big problem.
-
-#### Dependency Inversion
-
-This is a design principle in which the control of object creation, configuration and lifecycle is passed to a container
-framework.
