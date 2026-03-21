@@ -2,13 +2,13 @@
 
 ## Concept
 
-String is an immutable class representing String literals in java. They will instantiate inside heap and are managed in Spring pool.
+String is an immutable class representing String literals in java. They will instantiate inside heap and are managed in String pool.
 
 ## Equality check
 
 We should always use `equals()` method to check the equality of string literals. The `==` operator checks the reference equality. We can also use `equalsIgnoreCase()`
 
-> In case of StringBuilders we need to use `toString()` on them then compare with a string. or use String `contetEquals()` method.
+> In case of StringBuilders we need to use `toString()` on them then compare with a string. or use String `contentEquals()` method.
 
 ## Frequent methods
 
@@ -167,6 +167,22 @@ System.out.format("[%.3f]",pi); // [3.142]
 ```
 
 > 12 before `.` shows that the value should have 12 characters, if the value is not enough it will add leading spaces to it, by putting `0` it will replace the spaces with `0`.
+
+### Join
+
+we can join multiple elements with a delimeter in a single String value.
+
+```java
+var str = String.join(" / ", "S", "M", "XL"); // "S / M / XL"
+```
+
+### repeat
+
+We can repeat a String number of times using this method.
+
+### split
+
+We can split a string into array elements using a regular expression.
 
 ## String Pool
 
