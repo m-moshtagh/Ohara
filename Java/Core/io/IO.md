@@ -1,4 +1,4 @@
-# Java Input & Output API:
+# Java Input & Output API
 
 IO refers to input output. so whenever we need to do some input and output operations we use Java IO API.
 Java handles these operations using streams. input streams are for reading or getting data and, output streams are
@@ -17,7 +17,7 @@ ends with stream.
 > Java IO is implemented in decorator design pattern, so we can add features depending on classes.
 > Java IO API is synchronized.
 
-### OutputStreams:
+### OutputStreams
 
 We use these classes to write into different media:
 
@@ -35,14 +35,13 @@ output stream.
 > WE should always flush() because, if we set buffer to 1024 byte and at the end we don't have that large data to
 > send to client, server will wait for response but client has not received the whole message yet, so we need to flush
 > before closing all streams to avoid data loss.
-
 > closing a stream will release any resource it was working with.
 > It's better to use dispose pattern for above purpose.(closing resource in finally block, check if it was null just
 > ignore it. This is often used for streams, JDBC connections, Sockets and Channels.) Try with resource simplified this
 > task.
 > We can pass true to constructor in order to append to the file.
 
-### InputStreams:
+### InputStreams
 
 To Read data from particular media we use concrete subclasses of this type.
 read() method reads a single byte of a data from inputStream source and returns an int from 0 to 255. end of stream is
@@ -82,15 +81,12 @@ Streams are connected using their constructors.
 
 > `FileInputStream fin = new FileInputStream("data.txt");`
 > `BufferedInputStream bin = new BufferedInputStream(fin);`
-
 > The above code lets us use both of them but in order to prevent this we can write it this way:
-
 > `InputStream in = new FileInputStream("data.txt");`
 > `in = new BufferedInputStream(in);`
-
 > this way won't let us use buffered stream's additional methods.
 
-### Buffered Streams:
+### Buffered Streams
 
 The BufferedOutputStream stores written data in a buffer( a protected byte array field named buf) until the buffer
 is full or stream is flushed. Then it writes the data onto the underlying output stream all at once. A single writes
@@ -128,23 +124,23 @@ The most used concrete subclasses are:
 * InputStreamReader
 * OutputStreamWriter
 
-### Writers:
+### Writers
 
 This class is mirror of OutputStream class.
 
-#### OutputStreamWriter:
+#### OutputStreamWriter
 
 This class converts content into bytes according to specific encoding and writes it to underlying output stream.
 
-### Readers:
+### Readers
 
 This class is mirror of InputStream class.
 
-#### InputStreamReader:
+#### InputStreamReader
 
 This class converts the stream to specific encoding and returns it.
 
-#### FilterReaders & FilterWriters:
+#### FilterReaders & FilterWriters
 
 We can also chain up readers & writers like outputStreams & inputStreams for different purposes.
 
@@ -152,3 +148,32 @@ We can also chain up readers & writers like outputStreams & inputStreams for dif
 * LineNumberReader
 * PushBackReader
 * PrintWriter
+
+### Scanner
+
+We can also, use Scanner class to read from userInput and files. it has convinient methods for reading different dataTypes.
+
+```java
+void main() {
+        var scanner = new Scanner(System.in, StandardCharsets.UTF_8);
+        var stringValue = scanner.nextLine();
+        var intValue = scanner.nextInt(); 
+        scanner.close();
+        System.out.printf("The input values are %d and %s", intValue, stringValue);
+}
+```
+
+### Console
+
+In order to read password from user input, Scanner is not appropriate, we can use console class.
+
+```java
+void main() {
+        var console = System.console();
+        var username = console.readLine("Username:" );
+        var password = console.readPassword("Passworrd: ");
+        System.out.println(username);
+        Arrays.fill(password, '*');
+        System.out.println(password);
+}
+```

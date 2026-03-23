@@ -18,12 +18,18 @@ String getWeather(Season value) {
 
 This works however if we add another value to the enum, suddenly this switch will fail, but if we add a default branch we can handle it better.
 
-## Switch statements
+## Switch expressions
 
 To use this feature we use `->` instead of `:` in front of case keyword.
 If we have multiple expressions for a case, we can use `yield` keyword in order to break the switch. This is equilavant to return inside a switch expression.
 
 > You can’t return incompatible or random data types.
+
+### Fallthrough
+
+switch cases that have `:` instead of `->` are fallthrough hence, we need to break them if they don't return a value or yield a value. However switch cases with `->` are No fallthrough, so we don't need break or yield. Yield unless we meed have multiple statements in a case and we need to return a value.
+
+> We need to avoid Fallthrough forms and also prefer switch expressions over statements.
 
 ## Pattern matching
 
