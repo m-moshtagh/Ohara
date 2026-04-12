@@ -62,8 +62,8 @@ We can also, exclude dependencies or make them optional which excludes them by d
 ### Scope
 
 * **Compile**: Default. Available on all classpaths of project. Also, propogated to downstream projects.
-* **Provided**: Like compile, but expected to be provided by JDK or Container at runtime.
-* **Runtime**: Not required for compile, but needed for runtime. On runtime and test classpaths, not compile.
+* **Provided**: Like compile, but expected to be provided by JDK or Container at runtime. Like servlet api which we need for compile but we don't need it in our artifact because the Servlet container already has it.
+* **Runtime**: Not required for compile, but needed for runtime. On runtime and test classpaths, not compile. Like mysqlConnector which is needed in runtime because everything is in JDBC.
 * **Test**: Only available on test Classpath, not transitive.
 * **System**: similar to provided, but JAR is added to system explicitly.(via file path)
 * **Import**: imports dependency of POM.
