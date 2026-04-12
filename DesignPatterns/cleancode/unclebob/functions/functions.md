@@ -8,6 +8,29 @@ Functions should be small, 4 lines is ok and of course We need long highly descr
 Old good point says that function should do only one thing. in order to achieve that we continue extracting that
 function until we cannot extract it anymore.(extract till you drop)
 
+Inside **If clause** it's always better to use a predicate function.
+
+**Long Functions** are where classes hide. So, Long functions are big scopes that use local variables hence, They can always change into classes. We should also consider single responsibility. So that if Two sections literaly don't belong together we can easily break them to Two classes.
+
+> A function should do **ONE** thing, do it well and do it only.
+
+If function is consisted of different sections that means it does more than a one thing.
+
+In order for a function to do one thing We must not cross levels of abstractions. Which means for example We have Html renderes and String buffers. If a function manipulates both these abstraction levels it certainly doesn't do one thing.
+
+> We can achieve this by extract till we drop.
+
+**Feature Envy** is a condition where we write a function inside a class however, the function doesn't use any properties of the current class and it may also accept an argument of another type.
+
+> In this case we can easily move the function to the other class.
+
+So we need to remember:
+
+* Keep the size of functions small
+* Write well named functions for easier understanding and navigation.
+* Classes hide in long functions.
+* Functions do 1 thing
+
 ## Function Structure
 
 With this topic we are going to get rid of the function complex declaration with lots of arguments, switch and if statements, assigning statements and complex try catch blocks that make our code look obscure.
@@ -91,4 +114,4 @@ So according to this no mather how complex algorithm is, it has single entrance 
 
 ##### Error Handling
 
-It's always good to throw uncheckedExceptions. 
+It's always good to throw uncheckedExceptions.
