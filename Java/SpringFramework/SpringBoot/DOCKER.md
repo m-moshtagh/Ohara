@@ -2,7 +2,7 @@
 
 ## Methods
 
-We can create Docker images using 
+We can create Docker images using
 
 * integrated plugin
 * JID plugin
