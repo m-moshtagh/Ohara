@@ -2,7 +2,7 @@
 
 Structured Query Language is the language we talk to our Database.
 
-## Query:
+## Query
 
 Basically all the questions we want to ask from database we use query.
 
@@ -16,7 +16,7 @@ In SQL, we can use condition in our query with WHERE keyword.
 SQL is a Declarative language which we just announce what we need, and we don't care what happens behind the back. But
 Imperative programming We just state everything that needs to be done.
 
-### Categories of SQL commands:
+### Categories of SQL commands
 
 - DCL(Data Control Language): We can Grant or Revoke access
 - DDL(Data Definition Language): In order to define or modify our structures we use DDL. Commands like Create, Alger,
@@ -25,13 +25,13 @@ Imperative programming We just state everything that needs to be done.
 - DML(Data Modification Language): We use these commands to interact with data inside database. Insert, Update, Delete,
   Merge, Call, Explain Plan and Lock table.
 
-### SELECT:
+### SELECT
 
 IN order to retrieve data from database we can use SELECT.
 
-` SELECT [COLUMNS_TO_FETCH] FROM "SCHEMA_NAME"."TABLE_NAME";`
+`SELECT [COLUMNS_TO_FETCH] FROM "SCHEMA_NAME"."TABLE_NAME";`
 
-#### Alias:
+#### Alias
 
 WE can also select a field and if the name doesn't look cool we can show it with an alias. we use AS keyword.
 
@@ -39,13 +39,13 @@ WE can also select a field and if the name doesn't look cool we can show it with
 
 When we use Functions() We lose column name so, We need to declare an alias after the function call in order to show it.
 
-#### DISTINCT:
+#### DISTINCT
 
 We can remove duplicate results in select command using DISTINCT keyword.
 
 `SELECT DISTINCT * FROM TABLE;`
 
-### Filtering Data:
+### Filtering Data
 
 In order to answer more complex queries we need to filter them using WHERE clause and combine them with Logical
 operators.
@@ -53,7 +53,7 @@ operators.
 ```roomsql
 select count("gender") from "public"."customers" 
 where gender='F' AND (state='OR' OR state='NSY');
-``` 
+```
 
 > In order to chain the where clause with conditions we need to be careful with the operator precedence.
 
@@ -83,7 +83,7 @@ SELECT username from "customers"
     OR "country"='Australia');
 ```
 
-#### Checking null values:
+#### Checking null values
 
 Sometimes we might have null values in our record. First we need to make sure that our required data is not nullable.
 In order to check the null value we can use IS keyword. This keyword is capable of checking the null and boolean values.
@@ -99,8 +99,8 @@ This is a more convenient way to filter between ranges than using comparison ope
 
 ```roomsql
 SELECT * FROM sql_store.customers c 
-	WHERE c.birth_date BETWEEN '1990-1-1' AND '2000-1-1';
-``` 
+ WHERE c.birth_date BETWEEN '1990-1-1' AND '2000-1-1';
+```
 
 #### IN keyword
 
@@ -118,7 +118,7 @@ SELECT count(orderId) as number_of_orders FROM orders
  WHERE customerId IN (7888, 1082, 12808, 9623);
 ```
 
-#### filtering using LIKE keyword:
+#### filtering using LIKE keyword
 
 In order to filter what we may partially know we use LIKE keyword.
 
@@ -128,16 +128,16 @@ SELECT * FROM customers WHERE customerName LIKE 'M%';
 
 Patterns is as following:
 
-* %: Any number of characters
-* _: One character
+- %: Any number of characters
+- _: One character
 
 Examples:
 
-* LIKE '%2': Fields that end with 2
-* LIKE '%2%': Fields that have 2 anywhere in the value
-* LIKE '_00%': Fields that have 2 zeros as the second and third character and anything afterward.
-* LIKE '2_%_%': Finds any character that start with 2 and are at least 3 characters in length.
-* LIKE '2__3': finds any 5 digits number that start with 2 and end with 3.
+- LIKE '%2': Fields that end with 2
+- LIKE '%2%': Fields that have 2 anywhere in the value
+- LIKE '_00%': Fields that have 2 zeros as the second and third character and anything afterward.
+- LIKE '2_%_%': Finds any character that start with 2 and are at least 3 characters in length.
+- LIKE '2__3': finds any 5 digits number that start with 2 and end with 3.
 
 NOTE: Postgres only uses text for LIKE so, we may need to cast our properties with CAST() function or use :: operator.
 CAST(salary AS text); || salary :: text;
@@ -146,10 +146,8 @@ NOTE: for insensitive cast we can use LIKE keyword.
 
 > SELECT count( customerId ) FROM customers
 > WHERE zip :: text LIKE '%2%'
-
 > SELECT count( customerId ) FROM customers
 > WHERE zip :: text LIKE '2_1%'
-
 > SELECT coalesce(state, 'No State') as "State" FROM customers
 > WHERE phone::text LIKE '302%';
 
@@ -159,22 +157,22 @@ We can use `REGEXP` instead of `LIKE` and pass regular expression to match Strin
 
 ```roomsql
 SELECT * FROM sql_store.customers c 
-	WHERE c.first_name REGEXP "ELKA|AMBUR";
+ WHERE c.first_name REGEXP "ELKA|AMBUR";
 ```
 
 ```roomsql
 SELECT * FROM sql_store.customers c 
-	WHERE c.last_name  REGEXP "EY$|ON$";
+ WHERE c.last_name  REGEXP "EY$|ON$";
 ```
 
 ```roomsql
 SELECT * FROM sql_store.customers c 
-	WHERE c.last_name  REGEXP "^MY|SE";
+ WHERE c.last_name  REGEXP "^MY|SE";
 ```
 
 ```roomsql
 SELECT * FROM sql_store.customers c 
-	WHERE c.last_name  REGEXP "B[RU]";
+ WHERE c.last_name  REGEXP "B[RU]";
 ```
 
 #### Sort using ORDER BY
@@ -185,8 +183,8 @@ however This is not applicable in other databases, you can only sort via columns
 
 ```roomsql
 SELECT *, quantity * unit_price AS total_price
-	FROM sql_store.order_items oi 
-	WHERE oi.order_id = 2 ORDER BY total_price DESC;
+ FROM sql_store.order_items oi 
+ WHERE oi.order_id = 2 ORDER BY total_price DESC;
 ```
 
 > We can also pass numbers to ORDER BY indicating the columns we have filtered base in precedence. This is not best
@@ -208,7 +206,7 @@ want to skip. for third page we need to pass `LIMIT 6, 3` which ignores first 6 
 
 For pages that need to load more items we can pass a number to LIMIT operator directly.
 
-### Functions:
+### Functions
 
 We have two kinds of functions: Aggregate and Scalar. Aggregate functions take all the data and produce one result. like
 sum(). Scalar functions run against each individual record So we get multiple outputs.
@@ -231,7 +229,7 @@ sum(). Scalar functions run against each individual record So we get multiple ou
  SELECT max(salary) as "maximum salary", sum(salary) AS "Total paid salaries" From "public"."salaries" ;
 ```
 
-### Comments:
+### Comments
 
 We can put single line comments with -- at the beginning of the line. We can also use `*/  */` for multiline comments.
 
@@ -304,16 +302,16 @@ tables from each side we can use LEFT/RIGHT outer joins.
 
 ```roomsql
 SELECT p.product_id, p.name, oi.quantity  FROM products p 
-	LEFT JOIN order_items oi ON p.product_id  = oi.product_id  ;
+ LEFT JOIN order_items oi ON p.product_id  = oi.product_id  ;
 ```
 
 #### Multiple outer joins
 
 ```roomsql
 SELECT o.order_id, o.order_date, os.name AS status, s.name AS shipper_name
-	FROM orders o 
-	LEFT JOIN order_statuses os ON o.status = os.order_status_id 
-	LEFT JOIN shippers s ON o.shipper_id = s.shipper_id ;
+ FROM orders o 
+ LEFT JOIN order_statuses os ON o.status = os.order_status_id 
+ LEFT JOIN shippers s ON o.shipper_id = s.shipper_id ;
 ```
 
 > We can also use self outer join if we want to see all records on individual table.
@@ -326,9 +324,9 @@ We can pass columns in it and separate them with comma.
 
 ```roomsql
 SELECT p.payment_id , c.name  AS client_name, pm.name AS payment_method 
-	FROM payments p  
-	JOIN clients c USING (client_id)
-	JOIN payment_methods pm ON p.payment_method = pm.payment_method_id ;
+ FROM payments p  
+ JOIN clients c USING (client_id)
+ JOIN payment_methods pm ON p.payment_method = pm.payment_method_id ;
 ```
 
 ### Natural Joins
@@ -354,13 +352,13 @@ We can combine query results with union keyword.
 
 ```roomsql
 SELECT c.customer_id, c.first_name, c.points, 'Bronze'
-	FROM customers c WHERE c.points < 2000
+ FROM customers c WHERE c.points < 2000
 UNION 
 SELECT c.customer_id, c.first_name, c.points, 'Silver'
-	FROM customers c WHERE c.points BETWEEN 2000 AND 3000
+ FROM customers c WHERE c.points BETWEEN 2000 AND 3000
 UNION 
 SELECT c.customer_id, c.first_name, c.points, 'Gold'
-	FROM customers c WHERE c.points > 3000
+ FROM customers c WHERE c.points > 3000
 ```
 
 ## Complex Queries
@@ -371,8 +369,8 @@ We can write queries inside SELECT, FROM and WHERE clause to first evaluate the 
 
 ```roomsql
 SELECT * 
-	FROM employees e 
-	WHERE e.salary > (SELECT AVG(salary) as average_salary FROM employees e2);
+ FROM employees e 
+ WHERE e.salary > (SELECT AVG(salary) as average_salary FROM employees e2);
 ```
 
 We can create a sub-query using the IN operator. Unlike above if the sub-query returns multiple values we need to write
@@ -380,9 +378,9 @@ IN keyword.
 
 ```roomsql
 SELECT * FROM clients c
-	WHERE client_id NOT IN (
-		SELECT DISTINCT client_id FROM invoices i
-	);
+ WHERE client_id NOT IN (
+  SELECT DISTINCT client_id FROM invoices i
+ );
 ```
 
 ### Sub-Queries vs JOINS
@@ -401,10 +399,10 @@ WHERE oi.product_id = 3;
 ```roomsql
 SELECT c.customer_id , c.first_name , c.last_name  
 FROM customers c WHERE c.customer_id IN (
-	SELECT o.customer_id
-	FROM order_items oi 
-	JOIN orders o USING(order_id)
-	WHERE oi.product_id = 3
+ SELECT o.customer_id
+ FROM order_items oi 
+ JOIN orders o USING(order_id)
+ WHERE oi.product_id = 3
 );
 ```
 
@@ -414,13 +412,13 @@ We can use ALL instead of IN if we have the condition on multiple values need to
 
 ```roomsql
 SELECT * FROM invoices i WHERE i.invoice_total > (
-	SELECT MAX(invoice_total) FROM invoices i2 WHERE i2.client_id  = 3
+ SELECT MAX(invoice_total) FROM invoices i2 WHERE i2.client_id  = 3
 )
 ```
 
 ```roomsql
 SELECT * FROM invoices i WHERE i.invoice_total > ALL (
-	SELECT invoice_total FROM invoices i2 WHERE i2.client_id  = 3
+ SELECT invoice_total FROM invoices i2 WHERE i2.client_id  = 3
 )
 ```
 
@@ -455,8 +453,8 @@ heavier and take more time.
 ```roomsql
 SELECT * FROM invoices i 
 WHERE i.invoice_total > (
-	SELECT AVG(invoice_total) FROM invoices i2 
-	WHERE i2.client_id  = i.client_id 
+ SELECT AVG(invoice_total) FROM invoices i2 
+ WHERE i2.client_id  = i.client_id 
 )
 ```
 
@@ -468,8 +466,8 @@ there or not.
 ```roomsql
 SELECT * FROM products p 
 WHERE NOT EXISTS (
-	SELECT oi.product_id FROM order_items oi
-	WHERE oi.product_id = p.product_id 
+ SELECT oi.product_id FROM order_items oi
+ WHERE oi.product_id = p.product_id 
 )
 ```
 
@@ -478,7 +476,7 @@ Equivalent to:
 ```roomsql
 SELECT * FROM products p 
 WHERE p.product_id NOT IN (
-	SELECT oi.product_id FROM order_items oi
+ SELECT oi.product_id FROM order_items oi
 )
 ```
 
@@ -508,4 +506,4 @@ SELECT * FROM (
 WHERE total_sales IS NOT NULL;
 ```
 
-> However, this is recommended for small queries for large queries it's recommended to use views. 
+> However, this is recommended for small queries for large queries it's recommended to use views.

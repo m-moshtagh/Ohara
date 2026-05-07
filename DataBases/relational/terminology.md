@@ -26,7 +26,12 @@ A Language to interact and Query database in order to get or manipulate data.
 
 ### DBMS or RDBMS
 
-The software that allows us to manage our data.
+The software that allows us to manage our data. They have four important characteristics:
+
+- Data Definition: define the data being tracked
+- Data Manipulation: add, update or remove data
+- Data Retrieval: extract and report on the data on the database.
+- Administration: defining users on the system, security, monitoing, system administration
 
 ### Table
 
@@ -37,8 +42,16 @@ tuple should follow the constraints. Multiple rows of data is called Cardinality
 
 ### Primary Key
 
+Primary key is and optional special database column or columns used to identify a database record.
+
 The thing that makes it possible to make relationships between tables is primary keys. This is a unique identifier for
 each record.
+
+### Surrogate key
+
+Is a type of primary key which used a unique generated value. Should have no business value, and should never change. Typically a system generated self incrementing number.
+
+> Can be a unique string (UUID).
 
 ### Foreign key
 
