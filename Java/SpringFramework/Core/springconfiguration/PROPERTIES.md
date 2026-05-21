@@ -1,14 +1,13 @@
-## External Properties Configurations
+# External Properties Configurations
 
 ***
 
-### Why?
+## Why?
 
 Most of the time we want to read configuration from properties file isolated from Classes.
-<br>
 We define our properties files inside resources' folder. Then we can add a PropertySourcesPlaceHolderConfigure bean
 inside configuration class, then provide values to properties we want, using spEL.
-</br>*Properties File*
+*Properties File*
 
 ### Spring Expression Language
 
@@ -18,7 +17,7 @@ ds.mysql.password=root
 ds.mysql.url=root
 ```
 
-*Configuration Class*
+*Configuration Class*:
 
 ```java
 
@@ -64,7 +63,7 @@ and use `getProperty()` to set the value inside variable.
 
 ### Multiple Property Files
 
-We can use multiple properties files by<br>
+We can use multiple properties files by
 `@PropertySources({
 @PropertySource(),
 @PropertySource()

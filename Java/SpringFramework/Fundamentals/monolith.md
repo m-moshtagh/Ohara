@@ -1,8 +1,8 @@
-## Monolithic Architecture
+# Monolithic Architecture
 
 -- --
 
-### Traditional Monolith Applications Characteristics
+## Traditional Monolith Applications Characteristics
 
 These applications mostly have these characteristics:
 

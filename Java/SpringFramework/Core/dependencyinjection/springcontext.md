@@ -1,7 +1,7 @@
 # The Spring Context
 
 This is also called Application Context or Spring IoC container
-Best brief explanation with code samples:<br>
+Best brief explanation with code samples:
 [**Baeldung spring container**](https://www.baeldung.com/spring-application-context)
 ***
 
@@ -53,9 +53,9 @@ bean.
 Spring has two interfaces we can implement for callback events
 
 * InitializingBean.afterPropertiesSet()
-    * Called after properties are set.
+  * Called after properties are set.
 * DisposableBean.destroy()
-    * Called during bean destruction in shutdown.
+  * Called during bean destruction in shutdown.
 
 Spring also has two annotations we can use to hook into the bean lifecycle.
 
@@ -66,13 +66,12 @@ Bean PostProcessors
 
 * We can manage our beans inside spring context lifecycle and, interact with them as they are being processed.
 * implement BeanPostProcessor interface.
-    * postProcessBeforeInitialization: called before bean initialization method
-    * postProcessAfterInitialization: called after bean initialization.
-    * both get the bean object as argument.
+  * postProcessBeforeInitialization: called before bean initialization method
+  * postProcessAfterInitialization: called after bean initialization.
+  * both get the bean object as argument.
 
 Aware interfaces
 
 * has 14 Aware interfaces, these are used to access the spring framework infrastructure. widely used within the
   framework.
   ![Aware Interfaces](../../pics/aware-interface.png)
-

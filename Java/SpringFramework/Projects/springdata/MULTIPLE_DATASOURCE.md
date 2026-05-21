@@ -119,7 +119,7 @@ public class Configuration {
     @Primary
     @Bean
     public PlatformTransactionManager memberTransactionManager(final @Qualifier("memberEntityManagerFactory")
-                                                               LocalContainerEntityManagerFactoryBean
+    LocalContainerEntityManagrFactoryBean
                                                                        memberEntityManagerFactory) {
         return new JpaTransactionManager(memberEntityManagerFactory.getObject());
     }
@@ -176,12 +176,10 @@ public class MemberDataSourceConfiguration {
 
 > **basePackages**: We use this field to set the base package of our repositories. For instance, for the member
 > datasource, it must point to the `package guru.springframework.multiprocessing.repository.member`
-
 > **entityManagerFactoryRef**:  We use this field to reference the entity manager factory bean defined in the data
 > source configuration file. It is important to take note of the fact that the `entityManagerFactoryRef` value must
 > match the bean name (if specified via the name field of the `@Bean` annotation else will default to method name) of
 > the entity manager factory defined in the configuration file.
-
 > **transactionManagerRef**: This field references the transaction manager defined in the data source configuration
 > file. Again it is important to ensure that the `transactionManagerRef` value matches with the bean name of the
 > transaction manager factory.

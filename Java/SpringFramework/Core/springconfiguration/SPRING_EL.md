@@ -8,7 +8,7 @@ We can fetch properties inside of properties files or spring beans and manipulat
 
 SpEL expressions begin with the # symbol, and are wrapped in braces: `#{expression}`. Properties can be referenced in a
 similar fashion, starting with a $ symbol, and wrapped in braces: `${property.name}`. Property placeholders cannot
-contain SpEL expressions, but expressions can contain property references: `#{${someProperty} + 2}`
+contain SpEL expressions, but expressions can contain property references:`#{${someProperty} + 2}`
 
 ### Arithmetic
 

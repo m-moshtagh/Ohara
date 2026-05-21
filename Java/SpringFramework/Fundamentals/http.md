@@ -1,20 +1,20 @@
-## Hyper Text Transfer Protocol
+# Hyper Text Transfer Protocol
 
 -- --
 The base of Restful webservices is HTTP protocol which we can read the RFC to know about versioning details and history.
 
-### Request methods
+## Request methods
 
 These methods also known as verbs indicate the desired action we want to be performed.
 
 * GET: is a request for a resource.
-    * This is used when you visit a website
+  * This is used when you visit a website
 * HEAD: is like get, but only asks for metadata of the resources without the body
 * POST: is used to post data to server
-    * post data passed to a html form
-    * Post is create request
+  * post data passed to a html form
+  * Post is create request
 * PUT: request for enclosed entity to be stored in supplied URI. if the entity exists, it is expected to be updated.
-    * put is a create/update request
+  * put is a create/update request
 * DELETE: is a request to delete the specified resource.
 * TRACE: will echo the received request. can be used to see if the request was altered by intermediate servers
 * OPTION: returns the http methods supported by the server for specified URL.
@@ -32,17 +32,18 @@ These methods also known as verbs indicate the desired action we want to be perf
 
 * 100: informational in nature
 * 200: successful request
-    * 200 okay, 201 created, 204 accepted
+  * 200 okay, 201 created, 204 accepted
 * 300: redirections
-    * 301 moved permanently
+  * 301 moved permanently
 * 400: client errors
-    * 400 bad request, 401 not authorized, 404 not found
+  * 400 bad request, 401 not authorized, 404 not found
 * 500: serverside errors
-    * 500 internal server, service unavailable
+  * 500 internal server, service unavailable
 
 ## Restful webservices
 
----- ----
+-- --
+
 _Because of simplicity and versatility, Restful web services have become a de facto standard for webservices. previously
 SOAP was more ral-avant_
 Rest means Representational State Transfer
@@ -76,21 +77,18 @@ Rest means Representational State Transfer
 * Spring has 3 distinct libraries for creating restful services
 * Spring has 2 distinct libraries for consuming restful services
 * There are also several popular libraries for creating and consuming rest services
-    * Spring MVC
-    * Spring WebFlux:
-        * Since Spring 5
-        * reactive programming approach
-    * Functional WebFlux(WebFlux.fn)
-        * alternative to annotation based configuration
-        * it's ideal to use for small scope microservices
-        * used to rapidly create web services
-    * Rest Template
-        * Primary library used to consume Restful web services
-        * highly configurable
-        * very stable
-    * Spring WebClient
-        * since spring 5
-        * Spring reactive web client
-
-
-
+  * Spring MVC
+  * Spring WebFlux:
+    * Since Spring 5
+    * reactive programming approach
+  * Functional WebFlux(WebFlux.fn)
+    * alternative to annotation based configuration
+    * it's ideal to use for small scope microservices
+    * used to rapidly create web services
+  * Rest Template
+    * Primary library used to consume Restful web services
+    * highly configurable
+    * very stable
+  * Spring WebClient
+    * since spring 5
+    * Spring reactive web client

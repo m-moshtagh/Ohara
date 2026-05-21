@@ -323,5 +323,3 @@ public interface UserRepository extends JpaRepository<User, Long> {
 ```
 
 ## Composite Repositories
-
-

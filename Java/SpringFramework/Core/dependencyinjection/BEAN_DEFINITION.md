@@ -386,6 +386,54 @@ public class Main {
 
 ```
 
+> Most of time we choose ScanComponent over @Bean configuration in case we have simple pojos and DTO and data carrier classes which their object values changes often. Because in this case Object will be created but values won't be set. In @Bean approach we initilize the object ourself so we set every property ourself.
+
+### Initilizing Streotype beans
+
+We can also, solve the initializing process with @PostConstruct or implementing InitializingBean interface.
+
+For destroying process we can also use, @PreDestory method or implement DisposableBean interface.
+
+> For @Bean definitions we can also, use initMethod or destroyMethod properties in @Bean annotation but it's not recommended.
+
+```java
+@Component
+@Data
+@Slf4j
+public class Vessel {
+    private String name;
+
+    @PostConstruct
+    public void initialize() {
+        setName("yacht");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        log.info("vessel object with name: {} destroyed", getName());
+    }
+}
+
+@Component
+@Data
+@Slf4j
+public class Vessel implements InitializingBean, DisposableBean {
+    private String name;
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        setName("yacht");
+    }
+
+    @Override
+    public void destroy() {
+        log.info("vessel object with name: {} destroyed", getName());
+    }
+}
+```
+
+> Destroy method will be called when context.close() is called.
+
 ## Java Class configuration no XML plain beans
 
 ```java
@@ -414,6 +462,9 @@ public class Config {
 }
 
 ```
+
+We can have more than one configuration files for our definitions, In SpringApplicationContext constructor we can pass more than one configuration classes.
+How ever for cleaner approach we can have a main configuration class nad use `@Import` to import other configuration files and pass this to the constructor.
 
 ```java
 package org.dogigiri.di.annotation;
@@ -636,3 +687,9 @@ public class Main {
 
 ```
 
+## ِDifferrence of @Component vs @Bean
+
+* We can create One or more instances of the class with @Bean however with @Component only one instance of the class will be added to the application context.
+* Using @Bean We can create an object instance of any type of class including libarries but, in @Component we can only create beans from application POJOs.
+* @Bean approach requires more code to write but developers have full control on creating and configuring a bean.
+* In @Bean Spring framework creates the bean based on the instructions we give to it However in @Component Spring framework takes charges of it and we just need to access it.

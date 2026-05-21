@@ -1,25 +1,25 @@
-## Spring Configuration
+# Spring Configuration
 
 ***
 
-### Types
+## Types
 
 * XML based configuration
-    * common in legacy code
-    * runtime development
+  * common in legacy code
+  * runtime development
 * Annotation based configuration
-    * Picked up by Component scan
-    * Refers to class level annotations
+  * Picked up by Component scan
+  * Refers to class level annotations
 * Java based configuration
-    * Uses Java Classes to define Spring Beans
-    * Configuration classes are defined by `@Configuration`
-    * Beans are declared with `@Bean` annotation on Java methods
+  * Uses Java Classes to define Spring Beans
+  * Configuration classes are defined by `@Configuration`
+  * Beans are declared with `@Bean` annotation on Java methods
 * Groovy bean DSL configuration
-    * We can declare beans in Groovy
+  * We can declare beans in Groovy
 
 > These work seamlessly together to define beans in spring context.
 
-#### Java Configuration
+### Java Configuration
 
 We can't Autowired third party classes Like usual classpath Interface implementation like classes. In order to do that
 We
@@ -27,9 +27,9 @@ need to create Beans in Configuration class.
 
 * We need to create a class annotated with `@Configuration`
 * Create method with proper signature
-    * The return type must be the Bean we want to auto-wire.
-    * The name of the method should be the bean name
-    * The method must be annotated with `@Bean`
+  * The return type must be the Bean we want to auto-wire.
+  * The name of the method should be the bean name
+  * The method must be annotated with `@Bean`
 
 ```java
 import org.springframework.context.annotation.Bean;

@@ -31,3 +31,12 @@ Spring. The most commonly used BeanFactory implementation is the XmlBeanFactory 
 is`XmlWebApplicationContext`. Depending on the bean definition, the factory will return either an independent instance
 of contained object(the Prototype design pattern), or a single shared instance (a superior alternative to the Singleton
 design pattern, in which the instance is a singleton in the scope of the factory)
+
+### Extentions of Application Context
+
+* Internationalization support
+* Application events - publish/listen to events inside spring
+* Resource Loading - from classpath, filesystem and URL
+* Environment & profiles - application.properties, active profiles, etc.
+* Auto scan & Annotations
+* AOP integration

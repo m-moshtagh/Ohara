@@ -11,8 +11,8 @@ party object handles the initialization and pass the dependency to us.
 ## Types of DI
 
 * By class properties - least preferred
-    * Can be public or private properties
-    * Using private properties is EVIL.
+  * Can be public or private properties
+  * Using private properties is EVIL.
 * By setters
 * By constructor(most preferred)
 
@@ -20,9 +20,8 @@ NOTE: Property injection on private fields is EVIL because Spring needs to use r
 to inject the dependency if the class is immutable(no setters). However, using constructor
 solves this problem because injects the value in the time of initialization and also the
 class can remain immutable.
-<br>
+
 NOTE: Final fields is also best practice.
-<br>
 
 [**Property Injection is EVIL by: Mario
 Junior*](https://www.linkedin.com/pulse/avoid-private-field-dependency-injection-here-why-m%C3%A1rio-j%C3%BAnior/)
@@ -42,6 +41,89 @@ Is a technique to allow dependencies inject at runtime.
 First we need to provide our dependency classes and mark them with one of spring stereotypes.
 Then we need to specify them in the dependent class and use one of the methods specified above
 with `@Authowired`.
+
+We have three different types of Autowiring:
+
+* field injection
+* setter injection
+* constructor injection
+
+![comparison](../../pics/diApproachCompare.png)
+
+### @Bean approach
+
+In @Bean approach we can simply wire two beans together by calling the method of target @Bean we want in the setter of the current Bean.
+Or we can define the dependent Bean inside parameters and spring will automatically wire these bean together.
+
+```java
+@Configuration
+@ComponentScan(basePackages = {"com.dogigiri"})
+public class VehicleConfiguration {
+    @Bean
+    String name() {
+        return "Dogigiri";
+    }
+
+    @Bean(name = "audiVehicle")
+    public Vehicle vehicle1() {
+        return new Vehicle("Audi");
+    }
+
+    @Bean("hondaVehicle")
+    @Primary
+    public Vehicle vehicle2() {
+        return new Vehicle("Honda");
+    }
+
+    @Bean(value = "ferrariVehicle")
+    public Vehicle vehicle3() {
+        return new Vehicle("Ferrari");
+    }
+
+    @Bean
+    public Person person() {
+        var person = new Person();
+        person.setName("Foo");
+        person.setVehicle(vehicle3());
+        return person;
+    }
+}
+```
+
+```java
+@Configuration
+@ComponentScan(basePackages = {"com.dogigiri"})
+public class VehicleConfiguration {
+    @Bean
+    String name() {
+        return "Dogigiri";
+    }
+
+    @Bean(name = "audiVehicle")
+    public Vehicle vehicle1() {
+        return new Vehicle("Audi");
+    }
+
+    @Bean("hondaVehicle")
+    @Primary
+    public Vehicle vehicle2() {
+        return new Vehicle("Honda");
+    }
+
+    @Bean(value = "ferrariVehicle")
+    public Vehicle vehicle3() {
+        return new Vehicle("Ferrari");
+    }
+
+    @Bean
+    public Person person(Vehicle vehicle) {
+        var person = new Person();
+        person.setName("Foo");
+        person.setVehicle(vehicle);
+        return person;
+    }
+}
+```
 
 ## @Qualifiers
 
@@ -63,6 +145,23 @@ public class test {
 When we have multiple implementations but, we want one of them to be the default bean so if we don't mention `@Qualifer`
 That been get injected, we can use `@Primary`. We specify it on top the dependency Class declaration.
 
+```java
+    @Bean("hondaVehicle")
+    @Primary
+    public Vehicle vehicle2() {
+        return new Vehicle("Honda");
+    }
+
+    @Bean(value = "ferrariVehicle")
+    public Vehicle vehicle3() {
+        return new Vehicle("Ferrari");
+    }
+
+    // now there will be no ambiguity
+    var secondVehicle = context.getBean(Vehicle.class);
+    log.info("the vehicle name is: {}", secondVehicle.getName());
+```
+
 ## Spring Profiles
 
 Profiles allow us to have certain beans that have a specific configuration.
@@ -74,4 +173,3 @@ profile.
 </br>
 There's a default profile so that if there's no active profile this is activated.
 All we have to do is to pass another argument to `@Profile({"profileName", "default"})`.
-

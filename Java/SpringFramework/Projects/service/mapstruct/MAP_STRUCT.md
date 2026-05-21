@@ -96,7 +96,6 @@ public interface MapStructMapper {
 
 > By setting the componentModel attribute to spring, the MapStruct processor will produce a singleton Spring Bean mapper
 > injectable wherever you need
-
 > If we need other dependencies inside our mappers we can use abstract classes instead of interface so, we can inject
 > other dependencies inside it.
 
