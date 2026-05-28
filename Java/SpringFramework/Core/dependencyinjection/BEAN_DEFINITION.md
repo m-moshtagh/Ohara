@@ -687,9 +687,37 @@ public class Main {
 
 ```
 
+### BeanRegistrar interface
+
+This functional interface introduced in spring 7. We can implement this interface and register beans we like base on Environment and import this class in configuration class.
+
+```java
+public class VesselRegistrar implements BeanRegistrar {
+    @Override
+    public void register(@NonNull BeanRegistry registry, Environment env) {
+        registry.registerBean("freeGate", Vessel.class,
+                vesselSpec -> vesselSpec.supplier(
+                        supplierContext -> {
+                            var vessel = new Vessel();
+                            vessel.setName("Alice");
+                            return vessel;
+                        }
+                ).primary()
+        );
+    }
+}
+```
+
 ## ِDifferrence of @Component vs @Bean
 
 * We can create One or more instances of the class with @Bean however with @Component only one instance of the class will be added to the application context.
 * Using @Bean We can create an object instance of any type of class including libarries but, in @Component we can only create beans from application POJOs.
 * @Bean approach requires more code to write but developers have full control on creating and configuring a bean.
 * In @Bean Spring framework creates the bean based on the instructions we give to it However in @Component Spring framework takes charges of it and we just need to access it.
+
+## lazy vs eager beans
+
+By default spring creates beans from classes during startup of the program, and calls the constructor wether we getBean or not. The default behavior of bean initialization is eager.
+We can specify @Lazy in bean definition so when only we refer to that class spring creates a bean and registers it.
+
+> in Prototype scope spring creates a new object when we try to erfer the bean, no eager instantiation is possible.

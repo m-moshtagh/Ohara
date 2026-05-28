@@ -1,8 +1,8 @@
-## Spring MVC
+# Spring MVC
 
 ***
 
-### What is MVC
+## What is MVC
 
 * A design pattern for GUI and Web applications.
 * Model
@@ -11,7 +11,7 @@
   ![MVC](../../pics/MVC.png)
   ![spring MVC](../../pics/springmvc.png)
 
-### Resources
+## Resources
 
 Resources directory in maven structure has two
 subdirectories:

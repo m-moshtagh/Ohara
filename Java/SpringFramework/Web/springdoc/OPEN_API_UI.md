@@ -5,7 +5,7 @@ springdoc-ui since spring boot version 3.0
 
 ## Configuration
 
-We can create Beans 
+We can create Beans
 
 ```java
 @Configuration

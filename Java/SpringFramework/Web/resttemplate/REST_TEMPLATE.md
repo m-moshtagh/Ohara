@@ -27,7 +27,7 @@ The names of most of the methods are based on a naming convention:
 * `postForLocation()`: creates a new resource using the HTTP POST method and returns the location of the newly created
   resource.
 
-```java 
+```java
 public class EmployeeRestClient {
     private static final String RESOURCE_PATH = "/rest/employees";
     private Logger LOG = LoggerFactory.getLogger(EmployeeRestClient.class);
@@ -92,6 +92,6 @@ public class EmployeeRestClient {
 ```
 
 We can see additional info on version
-3 [here](https://spring.io/blog/2009/03/27/rest-in-spring-3-resttemplatehttps://spring.io/blog/2009/03/27/rest-in-spring-3-resttemplate)
+3 [restTemplate](https://spring.io/blog/2009/03/27/rest-in-spring-3-resttemplatehttps://spring.io/blog/2009/03/27/rest-in-spring-3-resttemplate)
 
 > It's recommended to use WebClient interface instead of RestTemplate.
