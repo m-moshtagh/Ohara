@@ -39,7 +39,7 @@ With this topic we are going to get rid of the function complex declaration with
 
 We should act with arguments as liability not asset. We need to have maximum *three* arguments. If we pass more than 3, We need to reconsider to pass an object to it.
 For constructors, it's always preferable to use Builder pattern.
-No Boolean Arguments ever, because in that case we are declaring that the function can do two different things.
+No Boolean Arguments ever, because in that case we are declaring that the function can do two different things(two different functions).
 We also should not pass output argument instead, we should return value.
 We should also prevent passing or expecting to pass null argument instead we should create two functions.
 Defensive programming, which means writing all sort of null checks in the function itself is code smell. For public APIs this is recommended but working with team, we should prevent it.
