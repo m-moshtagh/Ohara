@@ -119,7 +119,7 @@ public class demo {
 
 ### invokeAll
 
-The `invokeAll() `method invokes all the Callable objects you pass to it in the collection passed as parameter. The
+The `invokeAll()`method invokes all the Callable objects you pass to it in the collection passed as parameter. The
 `invokeAll()` returns a list of Future objects via which you can obtain the results of the executions of each Callable.
 
 Keep in mind that a task might finish due to an exception, so it may not have "succeeded". There is no way on a Future

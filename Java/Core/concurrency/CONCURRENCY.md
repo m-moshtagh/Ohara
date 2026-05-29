@@ -120,14 +120,14 @@ to thread to stop. So, we need to handle a condition to that request to stop it.
 
 * In this case we need Thread-safe Programs.
 
-### Polling & Callback:
+### Polling & Callback
 
 * Poll: In this solution we return a flag which indicates the program is in use. so we check in an infinite loop and
   whenever the item is ready we can do our job. This is a very bad approach.
 * Callback: In this way the program doesn't check that the thread's job is finished or not otherwise, The thread tells
   the main thread that the job is finished.(Observer Design Pattern)
 
-## Strategies:
+## Strategies
 
 * Confinement: instead of one status for all threads we can have multiple statuses for each thread.
   For demo, we instantiate DownloadStatus object so each DownloadFile class can have a DownloadStatus object. Then in
@@ -173,20 +173,20 @@ for the other one to finish. Instead, we can call wait() method. this puts the t
 cpu waste, and we should wrap it with synchronize block with the object we need.(status) in that implementation we
 should notify() the waiting thread, so it can run.
 
-### Deadlock:
+### Deadlock
 
 This occurs when two threads try to access a resource the same time and each hold lock of that resource and neither of
 them is willing to release it, they will be in an infinite halt.
 To prevent this we should avoid unnecessary synchronization. We should use other thread safety solutions in our first
 priority.
 
-### Thread scheduling:
+### Thread scheduling
 
 When we have multiple threads to operate We need to schedule them and give them priority to get executed otherwise
 the operation can go on forever and users may get disappointed, like web requests.
 For priority, we can give a number between 0 and 10.
 
-### Preemption:
+### Preemption
 
 There are two kinds of thread scheduling:
 
@@ -238,7 +238,7 @@ There are two kinds of thread scheduling:
 * Finishing:
   The last state a thread may release control is to return.
 
-## Thread Pools & Executors:
+## Thread Pools & Executors
 
 Creating and cleaning threads from memory has lots load for our applications in order to reuse threads we use
 thread pools which is affordable by Executor class in java. we can submit tasks to this class and execute them.

@@ -2,7 +2,7 @@
 
 This class is designed to hold a single value per thread. For example if we have two threads that set two values in
 ThreadLocal class they can only access the value that they have set inside ThreadLocal. The values of two threads will
-not overwrite each other. 
+not overwrite each other.
 
 ## Code
 

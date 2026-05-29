@@ -83,7 +83,7 @@ Drawbacks:
 * is null check still needed?
 * what if parent class is final?
 
-## Null is a smell!
+## Null is a smell
 
 In case of null we the worst part that always comes to mind is runtime NullPointerException Which is a pain in the ass.
 However, since Java 8 We can use Wrapper class optional to determine if the result inside this optional is available or
@@ -91,7 +91,7 @@ not.
 
 Here are some of best practices:
 
-#### Wrap object with Optional if there is probability of existence
+### Wrap object with Optional if there is probability of existence
 
 > If we have function which is returning a value for us, we should never return null directly we should wrap it inside
 > Optional class. In case of collection it's recommended that we return an empty collection.
@@ -106,9 +106,9 @@ Here are some of best practices:
 
 #### use orElse or orElseGet to unwrap value
 
-#### Never use `Optional.get()` directly, firs make sure with `Optional.isPresent()` or `isEmpty()`
+#### Never use `Optional.get()` directly, first make sure with `Optional.isPresent()` or `isEmpty()`
 
-#### never use Optional on fields because it's not serializable.
+#### never use Optional on fields because it's not serializable
 
 #### Examples
 
@@ -181,4 +181,3 @@ public class Sample {
     }
 }
 ```
-

@@ -118,4 +118,4 @@ The ReentrantLock `isHeldByCurrentThread()` method returns true if the Lock is h
 
 ### isLocked
 
-The ReentrantLock `isLocked()` method returns true if the Lock is currently locked, and false if not. 
+The ReentrantLock `isLocked()` method returns true if the Lock is currently locked, and false if not.

@@ -7,8 +7,8 @@ Race condition occurs when:
 
 * Two or more threads read and write the same resource concurrently.
 * The threads access the variables using:
-    * Check then act
-    * Read modify write (Where modified value depends on the previously read value)
+  * Check then act
+  * Read modify write (Where modified value depends on the previously read value)
 * The thread access to resource is not atomic.
 
 ## Read Modify Write Example

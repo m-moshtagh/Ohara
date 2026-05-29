@@ -1,16 +1,16 @@
 # Collection Framework
 
-## Hierarchy of collection API:
+## Hierarchy of collection API
 
 * Iterable
-    * Collection
-        * List
-            * ArrayList
-            * LinkedList
-        * Queue
-            * PriorityQueue
-        * Set
-            * HashSet
+  * Collection
+    * List
+      * ArrayList
+      * LinkedList
+    * Queue
+      * PriorityQueue
+    * Set
+      * HashSet
 
 The iterable interface which is on the peak of our hierarchy, is not actually a part of Collection framework and is
 part of java.lang package. This interface represents that we can iterate over elements of the object. (using foreach)
